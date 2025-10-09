@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Likith Aswathanarayana — Cybersecurity Portfolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* RESET */
+    * { margin: 0; padding: 0; box-sizing: border-box; text-decoration: none; }
+    html { font-size: 62.5%; scroll-behavior: smooth; }
+    body { background: #000; color: #f1f1f1; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+
+    /* HEADER */
+    header {
+      position: fixed; top: 0; left: 0; width: 100%;
+      padding: 1.6rem 8%; background: rgba(0,0,0,0.85);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      display: flex; justify-content: space-between; align-items: center;
+      z-index: 100; backdrop-filter: blur(8px);
+    }
+    .logo { font-family: 'Orbitron', sans-serif; font-size: 2.6rem; font-weight: 700; color: #fff; letter-spacing: 1px; }
+    nav a { font-size: 1.6rem; color: #ccc; margin-left: 3rem; transition: 0.3s; }
+    nav a:hover, nav a.active { color: #fff; }
+
+    /* SECTIONS */
+    section { min-height: 100vh; padding: 10rem 9% 6rem; }
+    h2.section-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 3rem;
+      text-transform: uppercase;
+      margin-bottom: 4rem;
+      text-align: center;
+      letter-spacing: 0.2rem;
+    }
+    .container { max-width: 1100px; margin: 0 auto; }
+
+    /* HERO */
+    .home { display: flex; align-items: center; justify-content: center; gap: 6rem; }
+    .home-img img {
+      width: 32vw; border-radius: 50%; border: 2px solid #333;
+      filter: grayscale(100%) brightness(1.1); transition: 0.4s;
+    }
+    .home-img img:hover { filter: grayscale(0%); transform: scale(1.03); }
+    .home-content h1 { font-family: 'Orbitron', sans-serif; font-size: 5rem; margin-bottom: 1rem; }
+    .home-content h3.typing-text { font-size: 2.4rem; margin-bottom: 1.2rem; color: #aaa; }
+    .home-content h3 span::before {
+      content: "Cybersecurity Enthusiast"; animation: words 20s infinite; color: #aaa;
+    }
+    @keyframes words {
+      0%, 20% { content: "Cybersecurity Enthusiast"; }
+      21%, 40% { content: "Threat Hunter"; }
+      41%, 60% { content: "Security Researcher"; }
+      61%, 80% { content: "CTF Player"; }
+      81%, 100% { content: "Reverse Engineer"; }
+    }
+    .home-content p { font-size: 1.6rem; color: #aaa; line-height: 1.6; max-width: 600px; margin-bottom: 2rem; }
+    .social-icons a {
+      display: inline-flex; justify-content: center; align-items: center;
+      width: 4rem; height: 4rem; border: 1px solid #444; border-radius: 50%;
+      margin-right: 1.5rem; color: #aaa; font-size: 1.8rem; transition: 0.3s;
+    }
+    .social-icons a:hover { color: #fff; border-color: #fff; transform: scale(1.15); }
+    .btn {
+      display: inline-block; padding: 1rem 2.8rem; border-radius: 4rem;
+      border: 1px solid #777; font-size: 1.6rem; color: #f1f1f1;
+      letter-spacing: 0.2rem; transition: 0.3s; margin-top: 1.6rem;
+    }
+    .btn:hover { background-color: #fff; color: #000; transform: scale(1.05); }
+
+    /* ABOUT */
+    .about p { font-size: 1.6rem; color: #bbb; line-height: 1.8; max-width: 900px; margin: 0 auto; text-align: center; }
+
+    /* SKILLS */
+    .skills-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2.5rem;
+      justify-items: center;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .skill-card {
+      background: rgba(17, 17, 17, 0.6);
+      border: 1px solid rgba(0, 255, 255, 0.15);
+      padding: 3rem 2rem;
+      border-radius: 1.5rem;
+      text-align: center;
+      font-size: 2rem;
+      letter-spacing: 0.05rem;
+      color: #e0e0e0;
+      transition: all 0.35s ease;
+      width: 320px;
+      min-height: 220px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.05);
+    }
+
+    .skill-card:hover {
+      transform: translateY(-8px) scale(1.03);
+      background: rgba(0, 255, 255, 0.08);
+      border-color: rgba(0, 255, 255, 0.4);
+      box-shadow: 0 0 25px rgba(0, 255, 255, 0.2);
+      color: #00ffff;
+    }
+
+    /* PROJECTS (Auto-scroll carousel) */
+    .project-slider {
+      overflow: hidden;
+      position: relative;
+      width: 100%;
+      margin-top: 4rem;
+    }
+
+    .project-track {
+      display: flex;
+      gap: 2rem;
+      width: max-content;
+      animation: scrollProjects 30s linear infinite;
+    }
+
+    .card {
+      background: rgba(17, 17, 17, 0.65);
+      border: 1px solid rgba(0, 255, 170, 0.15);
+      border-radius: 1.5rem;
+      padding: 3rem 2rem;
+      min-width: 320px;
+      min-height: 220px;
+      transition: all 0.35s ease;
+      text-align: left;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 15px rgba(0, 255, 170, 0.05);
+    }
+
+    .card:hover {
+      transform: translateY(-8px) scale(1.03);
+      background: rgba(0, 255, 170, 0.08);
+      border-color: rgba(0, 255, 170, 0.4);
+      box-shadow: 0 0 25px rgba(0, 255, 170, 0.25);
+    }
+
+    .card h3 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.2rem;
+      margin-bottom: 1.2rem;
+      color: #00ffaa;
+      transition: color 0.3s ease;
+    }
+
+    .card:hover h3 { color: #00ffff; }
+
+    .card p {
+      color: #bfbfbf;
+      font-size: 1.6rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+
+    .card a {
+      color: #00ffaa;
+      font-size: 1.5rem;
+      transition: color 0.3s ease, text-shadow 0.3s ease;
+    }
+
+    .card a:hover {
+      color: #00ffff;
+      text-shadow: 0 0 8px #00ffff;
+    }
+
+    @keyframes scrollProjects {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .project-slider:hover .project-track {
+      animation-play-state: paused;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center; padding: 2rem 0;
+      font-size: 1.4rem; color: #777; border-top: 1px solid #111;
+      background: #000;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 995px) {
+      .home { flex-direction: column; text-align: center; }
+      .home-img img { width: 60vw; }
+      .home-content h1 { font-size: 3.8rem; }
+      .project-track { animation: scrollProjects 40s linear infinite; }
+      .card { min-width: 260px; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- HEADER -->
+  <header>
+    <a href="#" class="logo">Likith Aswathanarayana</a>
+    <nav>
+      <a href="#home" class="active">Home</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#certifications">Certifications</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section id="home" class="home">
+    <div class="home-img">
+      <img src="/home/jinx/final/port1.jpg" alt="Likith Aswathanarayana">
+    </div>
+    <div class="home-content">
+      <h1>Hi, I’m <span>Likith Aswathanarayana</span></h1>
+      <h3 class="typing-text">I'm a <span></span></h3>
+      <p>Cybersecurity researcher focused on offensive security, detection engineering, and CTF problem solving. Passionate about automation, reverse engineering, and secure system design.</p>
+      <div class="social-icons">
+        <a href="https://linkedin.com/in/likith3" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+        <a href="https://github.com/bytesbylikith" target="_blank"><i class="fa-brands fa-github"></i></a>
+        <a href="mailto:likith3@proton.me"><i class="fa-solid fa-envelope"></i></a>
+      </div>
+      <a href="/home/jinx/Downloads/RESUME.pdf" target="_blank" class="btn">Download Resume</a>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="about">
+    <h2 class="section-title">About</h2>
+    <div class="container">
+      <p style="font-size: 2.8rem;text-align: left;">
+        I’m a passionate cybersecurity learner and hands-on practitioner exploring the realms of
+        <strong>offensive security</strong>, <strong>detection engineering</strong>, and <strong>digital forensics</strong>.
+        My journey began with curiosity about how systems break — and gradually evolved into understanding how to defend and strengthen them.
+      </p>
+      <p style="font-size: 2.8rem;text-align: left;">
+        Over time, I’ve been actively building and experimenting with projects like <strong>SmartBruteRL</strong>, a reinforcement learning–based password prediction tool,
+        and <strong>Snapper</strong>, a CLI-focused Man-in-the-Middle (MITM) utility for ARP spoofing and packet analysis.
+      </p>
+      <p style="font-size: 2.8rem;text-align: left;">
+        I’ve also participated in CTFs and lab environments such as <strong>TryHackMe</strong>, <strong>Hack The Box</strong>, and <strong>Metasploitable</strong>,
+        where I continually test and refine my practical skills in exploitation, privilege escalation, and network forensics.
+      </p>
+      <p style="font-size: 2.8rem;text-align: left;">
+        My focus right now is on bridging the gap between <strong>red teaming</strong> and <strong>blue teaming</strong> — learning how attackers think while also understanding how defenders can detect, respond, and mitigate threats effectively.
+      </p>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="skills">
+    <h2 class="section-title">Skills</h2>
+    <div class="container">
+      <ul class="skills-list">
+        <li class="skill-card">Reverse Engineering</li>
+        <li class="skill-card">Binary exploitation</li>
+        <li class="skill-card">Linux & Kali Tools</li>
+        <li class="skill-card">Forensics Based Challenge building</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="projects">
+    <h2 class="section-title">Projects</h2>
+    <div class="project-slider">
+      <div class="project-track">
+        <div class="card">
+          <h3>SmartBruteRL</h3>
+          <p>Reinforcement learning-based password spraying tool that predicts password patterns for web and service logins.</p>
+          <a href="https://github.com/bytesbylikith/smartbruterl" target="_blank">View Project →</a>
+        </div>
+        <div class="card">
+          <h3>Snapper (MITM Tool)</h3>
+          <p>CLI tool for ARP spoofing, packet sniffing, and live manipulation during network interception.</p>
+          <a href="#">View Project →</a>
+        </div>
+        <div class="card">
+          <h3>Cerebus</h3>
+          <p>An intelligent password auditing tool with generative scoring models for entropy analysis.</p>
+          <a href="https://github.com/bytesbylikith/cerebus" target="_blank">View Project →</a>
+        </div>
+        <div class="card">
+          <h3>Sentinel IDS</h3>
+          <p>Lightweight intrusion detection system built in Python with rule-based packet analysis.</p>
+          <a href="https://github.com/bytesbylikith/sentinel-ids" target="_blank">View Project →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section id="certifications" class="certifications">
+    <h2 class="section-title">Certifications</h2>
+    <div class="container projects-grid">
+      <div class="card">
+        <h3>Google Cybersecurity Professional Certificate</h3>
+        <p>Completed foundational cybersecurity concepts, SOC workflows, and practical lab exercises.</p>
+      </div>
+      <div class="card">
+        <h3>Wireshark Guided Project (Coursera)</h3>
+        <p>Packet capture and analysis for cybersecurity investigations and network event correlation.</p>
+      </div>
+      <div class="card">
+        <h3>Metasploit Hands-on Training</h3>
+        <p>Exploit development, payload delivery, and post-exploitation workflows in controlled labs.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    &copy; <span id="year"></span> Likith Aswathanarayana — All Rights Reserved
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Duplicate projects for seamless infinite scroll
+    const track = document.querySelector('.project-track');
+    const clone = track.innerHTML;
+    track.innerHTML += clone;
+  </script>
+</body>
+</html>
