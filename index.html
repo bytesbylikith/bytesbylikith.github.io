@@ -2,923 +2,316 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Likith Aswathanarayana — Cybersecurity Portfolio</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Orbitron:wght@500;700&family=Syncopate:wght@400;700&display=swap"
-    rel="stylesheet">
-
-  <style>
-    /* RESET */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      text-decoration: none;
-    }
-
-    html {
-      font-size: 62.5%;
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      overflow-x: hidden;
-      transition: background-color 0.3s, color 0.3s;
-      position: relative;
-    }
-
-    /* COLOR PALETTE */
-    :root {
-      /* Dark Mode */
-      --bg-primary-dark: #000000; /* Pitch black for background */
-      --bg-secondary-dark: rgba(30, 30, 30, 0.5); /* Glassy, semi-transparent for cards */
-      --bg-hover-dark: #2A3E50; /* Darker steel blue for card hover */
-      --text-primary-dark: #E0E0E0; /* Soft white for text */
-      --text-secondary-dark: #B0B0B0; /* Muted gray for secondary text */
-      --accent-primary-dark: #4682B4; /* Steel blue for links/buttons */
-      --accent-secondary-dark: #708090; /* Slate gray for borders/hovers */
-      --border-dark: #333333; /* Dark border for cards */
-
-      /* Light Mode */
-      --bg-primary-light: #F5F5F5; /* Soft off-white for background */
-      --bg-secondary-light: rgba(255, 255, 255, 0.5); /* Glassy, semi-transparent for cards */
-      --bg-hover-light: #E6ECEF; /* Light steel blue for card hover */
-      --text-primary-light: #1A1A1A; /* Dark charcoal for text */
-      --text-secondary-light: #4A4A4A; /* Medium gray for secondary text */
-      --accent-primary-light: #4682B4; /* Steel blue, consistent with dark mode */
-      --accent-secondary-light: #A9A9A9; /* Light gray for borders/hovers */
-      --border-light: #D3D3D3; /* Light border for cards */
-    }
-
-    /* Default to Dark Mode */
-    body {
-      background: var(--bg-primary-dark);
-      color: var(--text-primary-dark);
-    }
-
-    body.light-mode {
-      background: var(--bg-primary-light);
-      color: var(--text-primary-light);
-    }
-
-    /* PARTICLE BACKGROUND */
-    #particles {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      pointer-events: auto; /* Allow mouse interaction */
-    }
-
-    /* HEADER */
-    header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      padding: 1.6rem 8%;
-      background: rgba(0, 0, 0, 0.5);
-      border-bottom: 1px solid var(--border-dark);
-      backdrop-filter: blur(10px);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 100;
-    }
-
-    body.light-mode header {
-      background: rgba(245, 245, 245, 0.5);
-      border-bottom: 1px solid var(--border-light);
-      backdrop-filter: blur(10px);
-    }
-
-    .logo {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 2.6rem;
-      font-weight: 700;
-      color: var(--text-primary-dark);
-    }
-
-    body.light-mode .logo {
-      color: var(--text-primary-light);
-    }
-
-    nav a {
-      font-size: 1.6rem;
-      color: var(--text-secondary-dark);
-      margin-left: 3rem;
-      transition: color 0.3s;
-    }
-
-    body.light-mode nav a {
-      color: var(--text-secondary-light);
-    }
-
-    nav a:hover,
-    nav a.active {
-      color: var(--accent-primary-dark);
-    }
-
-    body.light-mode nav a:hover,
-    body.light-mode nav a.active {
-      color: var(--accent-primary-light);
-    }
-
-    /* SECTIONS */
-    section {
-      min-height: 100vh;
-      padding: 10rem 9% 6rem;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-
-    section.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    h2.section-title {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 3rem;
-      text-transform: uppercase;
-      margin-bottom: 4rem;
-      text-align: center;
-      letter-spacing: 0.2rem;
-      color: var(--text-primary-dark);
-    }
-
-    body.light-mode h2.section-title {
-      color: var(--text-primary-light);
-    }
-
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    /* HERO */
-    .home {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6rem;
-      position: relative;
-    }
-
-    .home-img {
-      position: relative;
-    }
-
-    .home-img img {
-      width: 32vw;
-      border-radius: 50%;
-      border: 2px solid var(--border-dark);
-      filter: grayscale(100%) brightness(1.1);
-      transition: filter 0.4s, transform 0.4s;
-    }
-
-    body.light-mode .home-img img {
-      border: 2px solid var(--border-light);
-      filter: grayscale(100%) brightness(1);
-    }
-
-    .home-img img:hover {
-      filter: grayscale(0%) brightness(1);
-      transform: scale(1.03);
-    }
-
-    body.light-mode .home-img img:hover {
-      filter: grayscale(0%) brightness(1);
-      transform: scale(1.03);
-    }
-
-    .home-content h1 {
-      font-family: 'Syncopate', sans-serif;
-      font-size: 5rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      color: var(--text-primary-dark);
-      text-transform: uppercase;
-      letter-spacing: 0.15rem;
-    }
-
-    body.light-mode .home-content h1 {
-      color: var(--text-primary-light);
-    }
-
-    .home-content h3.typing-text {
-      font-family: 'Syncopate', sans-serif;
-      font-size: 2.4rem;
-      font-weight: 400;
-      margin-bottom: 1.2rem;
-      color: var(--text-secondary-dark);
-      letter-spacing: 0.1rem;
-    }
-
-    body.light-mode .home-content h3.typing-text {
-      color: var(--text-secondary-light);
-    }
-
-    .home-content h3 span::before {
-      content: "Cybersecurity Enthusiast";
-      animation: words 20s infinite;
-      color: var(--text-secondary-dark);
-    }
-
-    body.light-mode .home-content h3 span::before {
-      color: var(--text-secondary-light);
-    }
-
-    @keyframes words {
-      0%, 20% { content: "Cybersecurity Enthusiast"; }
-      21%, 40% { content: "Threat Hunter"; }
-      41%, 60% { content: "Security Researcher"; }
-      61%, 80% { content: "CTF Player"; }
-      81%, 100% { content: "Reverse Engineer"; }
-    }
-
-    .home-content p {
-      font-family: 'Syncopate', sans-serif;
-      font-size: 1.6rem;
-      font-weight: 400;
-      color: var(--text-secondary-dark);
-      line-height: 1.8;
-      max-width: 600px;
-      margin-bottom: 2rem;
-      letter-spacing: 0.05rem;
-    }
-
-    body.light-mode .home-content p {
-      color: var(--text-secondary-light);
-    }
-
-    .social-icons {
-      margin-bottom: 3rem; /* Increased spacing */
-    }
-
-    .social-icons a {
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      width: 4rem;
-      height: 4rem;
-      border: 1px solid var(--border-dark);
-      border-radius: 50%;
-      margin-right: 1.5rem;
-      color: var(--text-secondary-dark);
-      font-size: 1.8rem;
-      transition: color 0.3s, border-color 0.3s, transform 0.3s;
-      position: relative;
-    }
-
-    body.light-mode .social-icons a {
-      border: 1px solid var(--border-light);
-      color: var(--text-secondary-light);
-    }
-
-    .social-icons a:hover {
-      color: var(--accent-primary-dark);
-      border-color: var(--accent-primary-dark);
-      transform: scale(1.15);
-    }
-
-    body.light-mode .social-icons a:hover {
-      color: var(--accent-primary-light);
-      border-color: var(--accent-primary-light);
-      transform: scale(1.15);
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 1rem 2.8rem;
-      border-radius: 4rem;
-      border: 1px solid var(--accent-secondary-dark);
-      font-size: 1.6rem;
-      color: var(--text-primary-dark);
-      letter-spacing: 0.2rem;
-      transition: color 0.3s, border-color 0.3s, background-color 0.3s, transform 0.3s;
-      position: relative;
-    }
-
-    body.light-mode .btn {
-      border: 1px solid var(--accent-secondary-light);
-      color: var(--text-primary-light);
-    }
-
-    .btn:hover {
-      background-color: var(--accent-primary-dark);
-      color: var(--text-primary-light);
-      border-color: var(--accent-primary-dark);
-      transform: scale(1.05);
-    }
-
-    body.light-mode .btn:hover {
-      background-color: var(--accent-primary-light);
-      color: var(--bg-primary-light);
-      border-color: var(--accent-primary-light);
-      transform: scale(1.05);
-    }
-
-    /* ABOUT */
-    .about p {
-      font-size: 1.6rem;
-      color: var(--text-secondary-dark);
-      line-height: 1.8;
-      max-width: 900px;
-      margin: 0 auto;
-      text-align: center;
-    }
-
-    body.light-mode .about p {
-      color: var(--text-secondary-light);
-    }
-
-    /* SKILLS */
-    .skills-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 2.5rem;
-      justify-items: center;
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      position: relative;
-    }
-
-    .skill-card {
-      background: var(--bg-secondary-dark);
-      border: 1px solid var(--border-dark);
-      padding: 3rem 2rem;
-      border-radius: 1.5rem;
-      text-align: center;
-      font-size: 2rem;
-      letter-spacing: 0.05rem;
-      color: var(--text-primary-dark);
-      transition: all 0.35s ease;
-      width: 320px;
-      min-height: 220px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      perspective: 1000px;
-      position: relative;
-      backdrop-filter: blur(10px);
-    }
-
-    body.light-mode .skill-card {
-      background: var(--bg-secondary-light);
-      border: 1px solid var(--border-light);
-      color: var(--text-primary-light);
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-      backdrop-filter: blur(10px);
-    }
-
-    .skill-card:hover {
-      background: var(--bg-hover-dark);
-      border-color: var(--accent-primary-dark);
-      transform: translateY(-8px) scale(1.03);
-      box-shadow: 0 0 15px rgba(70, 130, 180, 0.3);
-    }
-
-    body.light-mode .skill-card:hover {
-      background: var(--bg-hover-light);
-      border-color: var(--accent-primary-light);
-      box-shadow: 0 0 15px rgba(70, 130, 180, 0.2);
-    }
-
-    /* PROJECTS */
-    .project-slider {
-      overflow: hidden;
-      position: relative;
-      width: 100%;
-      margin-top: 4rem;
-    }
-
-    .project-track {
-      display: flex;
-      gap: 2rem;
-      width: max-content;
-      animation: scrollProjects 30s linear infinite;
-    }
-
-    .card {
-      background: var(--bg-secondary-dark);
-      border: 1px solid var(--border-dark);
-      border-radius: 1.5rem;
-      padding: 3rem 2rem;
-      min-width: 320px;
-      min-height: 220px;
-      transition: all 0.35s ease;
-      text-align: left;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      perspective: 1000px;
-      position: relative;
-      backdrop-filter: blur(10px);
-    }
-
-    body.light-mode .card {
-      background: var(--bg-secondary-light);
-      border: 1px solid var(--border-light);
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-      backdrop-filter: blur(10px);
-    }
-
-    .card:hover {
-      background: var(--bg-hover-dark);
-      border-color: var(--accent-primary-dark);
-      transform: translateY(-8px) scale(1.03);
-      box-shadow: 0 0 15px rgba(70, 130, 180, 0.3);
-    }
-
-    body.light-mode .card:hover {
-      background: var(--bg-hover-light);
-      border-color: var(--accent-primary-light);
-      box-shadow: 0 0 15px rgba(70, 130, 180, 0.2);
-    }
-
-    .card h3 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 2.2rem;
-      margin-bottom: 1.2rem;
-      color: var(--text-primary-dark);
-      transition: color 0.3s ease;
-    }
-
-    body.light-mode .card h3 {
-      color: var(--text-primary-light);
-    }
-
-    .card:hover h3 {
-      color: var(--accent-primary-dark);
-    }
-
-    body.light-mode .card:hover h3 {
-      color: var(--accent-primary-light);
-    }
-
-    .card p {
-      color: var(--text-secondary-dark);
-      font-size: 1.6rem;
-      margin-bottom: 1.5rem;
-      line-height: 1.6;
-    }
-
-    body.light-mode .card p {
-      color: var(--text-secondary-light);
-    }
-
-    .card a {
-      color: var(--accent-primary-dark);
-      font-size: 1.5rem;
-      transition: color 0.3s ease;
-    }
-
-    body.light-mode .card a {
-      color: var(--accent-primary-light);
-    }
-
-    .card a:hover {
-      color: var(--accent-secondary-dark);
-    }
-
-    body.light-mode .card a:hover {
-      color: var(--accent-secondary-light);
-    }
-
-    @keyframes scrollProjects {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-
-    .project-slider:hover .project-track {
-      animation-play-state: paused;
-    }
-
-    /* FOOTER */
-    footer {
-      text-align: center;
-      padding: 2rem 0;
-      font-size: 1.4rem;
-      color: var(--text-secondary-dark);
-      border-top: 1px solid var(--border-dark);
-      background: var(--bg-primary-dark);
-    }
-
-    body.light-mode footer {
-      color: var(--text-secondary-light);
-      border-top: 1px solid var(--border-light);
-      background: var(--bg-primary-light);
-    }
-
-    /* TOGGLE BUTTON */
-    .theme-toggle {
-      background: none;
-      border: none;
-      color: var(--text-secondary-dark);
-      font-size: 1.8rem;
-      cursor: pointer;
-      margin-left: 3rem;
-      transition: color 0.3s;
-    }
-
-    body.light-mode .theme-toggle {
-      color: var(--text-secondary-light);
-    }
-
-    .theme-toggle:hover {
-      color: var(--accent-primary-dark);
-    }
-
-    body.light-mode .theme-toggle:hover {
-      color: var(--accent-primary-light);
-    }
-
-    /* RESPONSIVE */
-    @media (max-width: 995px) {
-      .home {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      .home-img img {
-        width: 60vw;
-      }
-
-      .home-content h1 {
-        font-size: 3.8rem;
-      }
-
-      .project-track {
-        animation: scrollProjects 40s linear infinite;
-      }
-
-      .card {
-        min-width: 260px;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Likith Aswathanarayana | Security Engineer</title>
+    <meta name="description"
+        content="Portfolio of Likith Aswathanarayana, a Cybersecurity & Offensive Security Enthusiast.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  <!-- PARTICLE BACKGROUND -->
-  <canvas id="particles"></canvas>
+    <div class="spotlight"></div>
+    <div class="cursor-dot"></div>
 
-  <!-- HEADER -->
-  <header>
-    <a href="#" class="logo">Likith Aswathanarayana</a>
-    <nav>
-      <a href="#home" class="active">Home</a>
-      <a href="#about">About</a>
-      <a href="#skills">Skills</a>
-      <a href="#projects">Projects</a>
-      <a href="#certifications">Certifications</a>
-      <button class="theme-toggle" onclick="toggleTheme()">
-        <i class="fas fa-moon"></i>
-      </button>
+    <nav class="navbar">
+        <div class="logo">likith.aswathanarayana</div>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#work">Work</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
     </nav>
-  </header>
 
-  <!-- HERO -->
-  <section id="home" class="home">
-    <div class="home-img">
-      <img src="port1.jpg" alt="Likith Aswathanarayana">
-    </div>
-    <div class="home-content">
-      <h1>Hi, I’m <span>Likith Aswathanarayana</span></h1>
-      <h3 class="typing-text">I'm a <span></span></h3>
-      <p>Cybersecurity researcher focused on offensive security, detection engineering, and CTF problem solving.
-        Passionate about automation, reverse engineering, and secure system design.</p>
-      <div class="social-icons">
-        <a href="https://linkedin.com/in/likith3" target="_blank" class="magnetic"><i class="fa-brands fa-linkedin"></i></a>
-        <a href="https://github.com/bytesbylikith" target="_blank" class="magnetic"><i class="fa-brands fa-github"></i></a>
-        <a href="mailto:likith3@proton.me" class="magnetic"><i class="fa-solid fa-envelope"></i></a>
-      </div>
-      <a href="RESUME.pdf" target="_blank" class="btn magnetic">Download Resume</a>
-    </div>
-  </section>
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="hero-section">
+            <div class="container">
+                <span class="greeting reveal-text-wrapper"><span class="reveal-text">Likith
+                        Aswathanarayana</span></span>
+                <h1 class="hero-title reveal-text-wrapper">
+                    <span class="reveal-text">
+                        <span id="typewriter">Security Practitioner (in training).</span><span
+                            class="typewriter-cursor">&nbsp;</span>
+                    </span>
+                </h1>
+                <h2 class="tagline reveal-text-wrapper"><span class="reveal-text"
+                        style="transition-delay: 0.1s;">Building Foundations in <br>Offensive Security & Systems
+                        Engineering.</span></h2>
+                <div class="bio-short reveal-text-wrapper">
+                    <span class="reveal-text" style="transition-delay: 0.2s;">
+                        Explaining systems by breaking them. Documenting the learning process,
+                        from kernel internals to network protocols.
+                    </span>
+                </div>
+                <div class="cta-group reveal-text-wrapper">
+                    <div class="reveal-text" style="transition-delay: 0.3s;">
+                        <a href="#work" class="btn primary">View Experiments</a>
+                        <a href="#contact" class="btn secondary">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-  <!-- ABOUT -->
-  <section id="about" class="about">
-    <h2 class="section-title">About</h2>
-    <div class="container">
-      <p style="font-size: 2.8rem;text-align: left;">
-        I’m a passionate cybersecurity learner and hands-on practitioner exploring the realms of
-        <strong>offensive security</strong>, <strong>detection engineering</strong>, and <strong>digital
-          forensics</strong>.
-        My journey began with curiosity about how systems break — and gradually evolved into understanding how to defend
-        and strengthen them.
-      </p>
-      <p style="font-size: 2.8rem;text-align: left;">
-        Over time, I’ve been actively building and experimenting with projects like <strong>SmartBruteRL</strong>, a
-        reinforcement learning–based password prediction tool,
-        and <strong>Snapper</strong>, a CLI-focused Man-in-the-Middle (MITM) utility for ARP spoofing and packet
-        analysis.
-      </p>
-      <p style="font-size: 2.8rem;text-align: left;">
-        I’ve also participated in CTFs and lab environments such as <strong>TryHackMe</strong>, <strong>Hack The
-          Box</strong>, and <strong>Metasploitable</strong>,
-        where I continually test and refine my practical skills in exploitation, privilege escalation, and network
-        forensics.
-      </p>
-      <p style="font-size: 2.8rem;text-align: left;">
-        My focus right now is on bridging the gap between <strong>red teaming</strong> and <strong>blue teaming</strong>
-        — learning how attackers think while also understanding how defenders can detect, respond, and mitigate threats
-        effectively.
-      </p>
-    </div>
-  </section>
+        <!-- About Section -->
+        <section id="about" class="section">
+            <div class="container">
+                <h2 class="section-title reveal-text-wrapper"><span class="reveal-text">About</span></h2>
+                <div class="content-grid-2">
+                    <div class="text-content reveal-text-wrapper">
+                        <div class="reveal-text">
+                            <p>
+                                I am an undergraduate student identifying strictly as a <strong>learner</strong>.
+                                My goal is not to present myself as an expert, but as a disciplined student of computer
+                                systems.
+                            </p>
+                            <p>
+                                I focus on building tools from scratch (like protocols and malware simulators) because I
+                                believe
+                                abstraction is the enemy of deep understanding. All work featured here is built for
+                                educational labs
+                                and research environments.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Profile Image -->
+                    <div class="about-image-wrapper reveal-text-wrapper">
+                        <div class="reveal-text" style="transition-delay: 0.2s;">
+                            <img src="profile.png" alt="Likith Aswathanarayana" class="about-image">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-  <!-- SKILLS -->
-  <section id="skills" class="skills">
-    <h2 class="section-title">Skills</h2>
-    <div class="container">
-      <ul class="skills-list">
-        <li class="skill-card tilt">Reverse Engineering</li>
-        <li class="skill-card tilt">Binary Exploitation</li>
-        <li class="skill-card tilt">Linux & Kali Tools</li>
-        <li class="skill-card tilt">Forensics-Based Challenge Building</li>
-      </ul>
-    </div>
-  </section>
+        <!-- Projects Section -->
+        <section id="work" class="section">
+            <div class="container">
+                <h2 class="section-title reveal-text-wrapper"><span class="reveal-text">Learning Builds</span></h2>
+                <div class="projects-grid stagger-wrapper">
+                    <!-- Project 1 -->
+                    <article class="project-card stagger-item">
+                        <div class="project-info">
+                            <span class="status-badge">Prototype / Experimental</span>
+                            <h3>SmartBruteRL</h3>
+                            <p class="project-desc">
+                                <strong>Goal:</strong> To understand if Reinforcement Learning could optimize standard
+                                brute-force algorithms.<br>
+                                <strong>Current State:</strong> Functional Python prototype using a custom Q-learning
+                                agent.<br>
+                                <strong>What I Learned:</strong> The massive state space of passwords makes pure RL
+                                inefficient without significant heuristics.
+                            </p>
 
-  <!-- PROJECTS -->
-  <section id="projects" class="projects">
-    <h2 class="section-title">Projects</h2>
-    <div class="project-slider">
-      <div class="project-track">
-        <div class="card tilt">
-          <h3>SmartBruteRL</h3>
-          <p>Reinforcement learning-based password spraying tool that predicts password patterns for web and service
-            logins.</p>
-          <a href="https://github.com/bytesbylikith/smartbruterl" target="_blank">View Project →</a>
-        </div>
-        <div class="card tilt">
-          <h3>Snapper (MITM Tool)</h3>
-          <p>CLI tool for ARP spoofing, packet sniffing, and live manipulation during network interception.</p>
-          <a href="#">View Project →</a>
-        </div>
-        <div class="card tilt">
-          <h3>Cerebus</h3>
-          <p>An intelligent password auditing tool with generative scoring models for entropy analysis.</p>
-          <a href="https://github.com/bytesbylikith/cerebus" target="_blank">View Project →</a>
-        </div>
-        <div class="card tilt">
-          <h3>Sentinel IDS</h3>
-          <p>Lightweight intrusion detection system built in Python with rule-based packet analysis.</p>
-          <a href="https://github.com/bytesbylikith/sentinel-ids" target="_blank">View Project →</a>
-        </div>
-      </div>
-    </div>
-  </section>
+                            <h4 class="notes-heading">Next Steps:</h4>
+                            <ul class="notes-list">
+                                <li>Refactor critical loops into C++ for performance.</li>
+                                <li>Investigate transformer models for pattern recognition instead of simple RL.</li>
+                            </ul>
 
-  <!-- CERTIFICATIONS -->
-  <section id="certifications" class="certifications">
-    <h2 class="section-title">Certifications</h2>
-    <div class="container projects-grid">
-      <div class="card tilt">
-        <h3>Google Cybersecurity Professional Certificate</h3>
-        <p>Completed foundational cybersecurity concepts, SOC workflows, and practical lab exercises.</p>
-      </div>
-      <div class="card tilt">
-        <h3>Wireshark Guided Project (Coursera)</h3>
-        <p>Packet capture and analysis for cybersecurity investigations and network event correlation.</p>
-      </div>
-      <div class="card tilt">
-        <h3>Metasploit Hands-on Training</h3>
-        <p>Exploit development, payload delivery, and post-exploitation workflows in controlled labs.</p>
-      </div>
-    </div>
-  </section>
+                            <ul class="tech-list" style="display:flex; list-style:none;">
+                                <li>Python</li>
+                                <li>TensorFlow</li>
+                                <li>CLI</li>
+                            </ul>
+                        </div>
+                    </article>
 
-  <!-- FOOTER -->
-  <footer>
-    &copy; <span id="year"></span> Likith Aswathanarayana — All Rights Reserved
-  </footer>
+                    <!-- Project 2 -->
+                    <article class="project-card stagger-item">
+                        <div class="project-info">
+                            <span class="status-badge">Learning Build v0.1</span>
+                            <h3>Snapper</h3>
+                            <p class="project-desc">
+                                <strong>Goal:</strong> To manually implement ARP spoofing and packet dissection to
+                                understand layer 2 attacks.<br>
+                                <strong>Current State:</strong> Python script utilizing raw sockets and Scapy
+                                library.<br>
+                                <strong>What I Learned:</strong> Network stability is fragile; improper ARP restoration
+                                immediately crashes the local segment.
+                            </p>
 
-  <script>
-    // Set current year
-    document.getElementById("year").textContent = new Date().getFullYear();
+                            <h4 class="notes-heading">Next Steps:</h4>
+                            <ul class="notes-list">
+                                <li>Implement proper async queue handling for packet traffic.</li>
+                                <li>Add safeguards to prevent accidental DoS in lab environments.</li>
+                            </ul>
 
-    // Duplicate projects for seamless infinite scroll
-    const track = document.querySelector('.project-track');
-    const clone = track.innerHTML;
-    track.innerHTML += clone;
+                            <ul class="tech-list" style="display:flex; list-style:none;">
+                                <li>Python (Scapy)</li>
+                                <li>Raw Sockets</li>
+                                <li>Network Protocols</li>
+                            </ul>
+                        </div>
+                    </article>
 
-    // Theme toggle function
-    function toggleTheme() {
-      document.body.classList.toggle('light-mode');
-      const icon = document.querySelector('.theme-toggle i');
-      icon.classList.toggle('fa-moon');
-      icon.classList.toggle('fa-sun');
-    }
+                    <!-- Project 3 -->
+                    <article class="project-card stagger-item">
+                        <div class="project-info">
+                            <span class="status-badge">Prototype</span>
+                            <h3>Jarvis</h3>
+                            <p class="project-desc">
+                                <strong>Goal:</strong> To build a privacy-focused voice controller without cloud
+                                dependencies.<br>
+                                <strong>Current State:</strong> Local implementation mapping Whisper output to `systemd`
+                                calls.<br>
+                                <strong>What I Learned:</strong> Quantization is essential for CPU inference latency.
+                            </p>
 
-    // Magnetic hover effect for buttons/icons
-    document.querySelectorAll('.magnetic').forEach(function(element) {
-      element.addEventListener('mousemove', (e) => {
-        const rect = element.getBoundingClientRect();
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
-        const moveX = (e.clientX - centerX) * 0.2;
-        const moveY = (e.clientY - centerY) * 0.2;
-        element.style.transform = `translate(${moveX}px, ${moveY}px) scale(1.15)`;
-      });
+                            <h4 class="notes-heading">Next Steps:</h4>
+                            <ul class="notes-list">
+                                <li>Improve intent parsing logic (currently regex-heavy).</li>
+                                <li>Explore lighter models for background wake-word detection.</li>
+                            </ul>
 
-      element.addEventListener('mouseleave', () => {
-        element.style.transform = 'translate(0, 0) scale(1.15)';
-      });
-    });
+                            <ul class="tech-list" style="display:flex; list-style:none;">
+                                <li>Python</li>
+                                <li>Whisper (Local)</li>
+                                <li>Bash Utils</li>
+                            </ul>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
 
-    // 3D tilt effect for cards
-    document.querySelectorAll('.tilt').forEach(card => {
-      card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
-        const rotateX = (e.clientY - centerY) * -0.05;
-        const rotateY = (e.clientX - centerX) * 0.05;
-        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px) scale(1.03)`;
-      });
+        <!-- Advent of Code Section (New) -->
+        <section id="aoc" class="section">
+            <div class="container">
+                <h2 class="section-title reveal-text-wrapper"><span class="reveal-text">Discipline Check</span></h2>
+                <div class="aoc-grid reveal-text-wrapper">
+                    <div class="text-content reveal-text">
+                        <h3>Advent of Code 2025</h3>
+                        <p style="margin-bottom: 24px; color: var(--text-secondary);">
+                            I committed to solving daily algorithmic challenges throughout December to sharpen my
+                            problem-solving skills under constraints.
+                            This exercise was about **consistency over perfection**.
+                        </p>
+                        <p style="color: var(--text-secondary);">
+                            Key takeaways:
+                        </p>
+                        <ul class="notes-list" style="margin-top: 10px;">
+                            <li>Graph traversal algorithms (BFS/DFS) became second nature.</li>
+                            <li>Learned to prioritize reading comprehension over coding speed.</li>
+                            <li>Forced myself to debug logic on paper before print-debugging.</li>
+                        </ul>
+                    </div>
+                    <div class="aoc-stats reveal-text">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                            <div class="stat-box">
+                                <span class="stat-number">25</span>
+                                <span class="stat-label">Days Complete</span>
+                            </div>
+                            <div class="stat-box">
+                                <span class="stat-number">44</span>
+                                <span class="stat-label">Total Stars</span>
+                            </div>
+                            <div class="stat-box" style="grid-column: span 2;">
+                                <span class="stat-number" style="font-size: 1.5rem;">Python / C++</span>
+                                <span class="stat-label">Languages Used</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-      card.addEventListener('mouseleave', () => {
-        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0) scale(1)';
-      });
-    });
+        <!-- Skills Section -->
+        <section id="skills" class="section">
+            <div class="container">
+                <h2 class="section-title reveal-text-wrapper"><span class="reveal-text">Current Focus</span></h2>
+                <div class="skills-grid stagger-wrapper">
+                    <div class="skill-category stagger-item">
+                        <h3>Systems Learning</h3>
+                        <ul>
+                            <li>Linux Kernel (Reading)</li>
+                            <li>C Memory Management</li>
+                            <li>Assembly (Basics)</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category stagger-item">
+                        <h3>Lab Environment</h3>
+                        <ul>
+                            <li>Proxmox / Homelab</li>
+                            <li>Network Analysis</li>
+                            <li>Malware Sandbox</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category stagger-item">
+                        <h3>Tooling</h3>
+                        <ul>
+                            <li>Python (Automation)</li>
+                            <li>Ghidra (Beginner)</li>
+                            <li>Docker</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category stagger-item">
+                        <h3>Platforms</h3>
+                        <ul>
+                            <li>TryHackMe (Top 5%)</li>
+                            <li>HackTheBox</li>
+                            <li>Advent of Code</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    // Section reveal and active nav link
-    const sections = document.querySelectorAll('section');
-    const navLinks = document.querySelectorAll('nav a');
+        <!-- Philosophy Section -->
+        <section id="philosophy" class="section">
+            <div class="container">
+                <h2 class="section-title reveal-text-wrapper"><span class="reveal-text">Philosophy</span></h2>
+                <div class="content-grid-2">
+                    <div class="text-content reveal-text-wrapper">
+                        <div class="reveal-text">
+                            <p><strong>Fundamentals > Frameworks</strong></p>
+                            <p>
+                                I avoid abstractions until I understand what they abstract. Building wheels is
+                                inefficient for production, but essential for learning.
+                            </p>
+                            <p><strong>Prototypes > Perfection</strong></p>
+                            <p>
+                                Every project on this site is a snapshot of a learning process. I value the lessons
+                                learned from a broken prototype more than a tutorial-perfect clone.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    const observerOptions = {
-      root: null,
-      threshold: 0.3,
-    };
+        <!-- Contact Section -->
+        <section id="contact" class="section">
+            <div class="container">
+                <h2 class="contact-heading reveal-text-wrapper"><span class="reveal-text">Get in touch.</span></h2>
+                <p class="contact-text reveal-text-wrapper"><span class="reveal-text">Open for opportunities and
+                        collaboration.</span></p>
+                <div class="reveal-text-wrapper" style="display: flex; gap: 20px; align-items: center;">
+                    <span class="reveal-text"><a href="mailto:likith3@proton.me" class="btn primary">Email Me</a></span>
+                    <span class="reveal-text"><a href="https://github.com/bytesbylikith" target="_blank"
+                            class="btn secondary">GitHub</a></span>
+                    <!-- User provided GitHub link for LinkedIn, likely a typo. Added placeholder or same link? I'll omit LinkedIn for now to be safe or just add GitHub. -->
+                    <!-- Adding just GitHub as requested implies adding socials. -->
+                </div>
+            </div>
+        </section>
+    </main>
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          const id = entry.target.getAttribute('id');
-          navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === `#${id}`) {
-              link.classList.add('active');
-            }
-          });
-        }
-      });
-    }, observerOptions);
+    <footer class="footer"
+        style="padding: 40px 0; text-align: center; color: var(--text-secondary); font-size: 0.8rem; opacity: 0.5;">
+        <p>&copy; 2024 Likith Aswathanarayana.</p>
+    </footer>
 
-    sections.forEach(section => observer.observe(section));
-
-    // Enhanced particle background with directional magnetic effect
-    const canvas = document.getElementById('particles');
-    const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    let particlesArray = [];
-    const numberOfParticles = 60;
-    let mouse = { x: null, y: null, radius: 120, prevX: null, prevY: null };
-
-    class Particle {
-      constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 2 + 1;
-        this.baseX = this.x;
-        this.baseY = this.y;
-        this.speedX = Math.random() * 0.4 - 0.2;
-        this.speedY = Math.random() * 0.4 - 0.2;
-        this.density = (Math.random() * 30) + 1;
-      }
-
-      update() {
-        let dx = mouse.x - this.x;
-        let dy = mouse.y - this.y;
-        let distance = Math.sqrt(dx * dx + dy * dy);
-        let forceDirectionX = dx / distance;
-        let forceDirectionY = dy / distance;
-        let maxDistance = mouse.radius;
-        let force = (maxDistance - distance) / maxDistance;
-        let directionX = forceDirectionX * force * this.density; // Stronger attraction
-        let directionY = forceDirectionY * force * this.density;
-
-        // Adjust for cursor direction
-        let cursorDirectionX = mouse.prevX !== null ? mouse.x - mouse.prevX : 0;
-        let cursorDirectionY = mouse.prevY !== null ? mouse.y - mouse.prevY : 0;
-        let cursorMagnitude = Math.sqrt(cursorDirectionX * cursorDirectionX + cursorDirectionY * cursorDirectionY);
-        if (cursorMagnitude > 0) {
-          cursorDirectionX /= cursorMagnitude;
-          cursorDirectionY /= cursorMagnitude;
-          directionX += cursorDirectionX * force * 0.5; // Bias toward cursor direction
-          directionY += cursorDirectionY * force * 0.5;
-        }
-
-        if (distance < mouse.radius) {
-          this.x += directionX; // Changed to += for movement in direction of cursor
-          this.y += directionY;
-        } else {
-          this.x += this.speedX;
-          this.y += this.speedY;
-          if (Math.abs(this.x - this.baseX) > 50) this.speedX *= -1;
-          if (Math.abs(this.y - this.baseY) > 50) this.speedY *= -1;
-        }
-
-        if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
-        if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
-      }
-
-      draw() {
-        ctx.fillStyle = document.body.classList.contains('light-mode') ? 'rgba(74, 74, 74, 0.6)' : 'rgba(224, 224, 224, 0.6)';
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
-      }
-    }
-
-    function connectParticles() {
-      for (let i = 0; i < particlesArray.length; i++) {
-        for (let j = i + 1; j < particlesArray.length; j++) {
-          let dx = particlesArray[i].x - particlesArray[j].x;
-          let dy = particlesArray[i].y - particlesArray[j].y;
-          let distance = Math.sqrt(dx * dx + dy * dy);
-          if (distance < 100) {
-            let cursorDirectionX = mouse.prevX !== null ? mouse.x - mouse.prevX : 0;
-            let cursorDirectionY = mouse.prevY !== null ? mouse.y - mouse.prevY : 0;
-            let cursorMagnitude = Math.sqrt(cursorDirectionX * cursorDirectionX + cursorDirectionY * cursorDirectionY);
-            let lineOpacity = 0.2;
-            if (cursorMagnitude > 0 && mouse.x !== null) {
-              let lineDirectionX = dx / distance;
-              let lineDirectionY = dy / distance;
-              let dotProduct = (lineDirectionX * cursorDirectionX + lineDirectionY * cursorDirectionY) / (cursorMagnitude || 1);
-              lineOpacity = 0.2 + 0.3 * Math.abs(dotProduct); // Increase opacity for lines aligned with cursor
-            }
-            ctx.strokeStyle = document.body.classList.contains('light-mode') ? `rgba(74, 74, 74, ${lineOpacity})` : `rgba(224, 224, 224, ${lineOpacity})`;
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
-            ctx.lineTo(particlesArray[j].x, particlesArray[j].y);
-            ctx.stroke();
-          }
-        }
-      }
-    }
-
-    function initParticles() {
-      particlesArray = [];
-      for (let i = 0; i < numberOfParticles; i++) {
-        particlesArray.push(new Particle());
-      }
-    }
-
-    function animateParticles() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      for (let i = 0; i < particlesArray.length; i++) {
-        particlesArray[i].update();
-        particlesArray[i].draw();
-      }
-      connectParticles();
-      requestAnimationFrame(animateParticles);
-    }
-
-    initParticles();
-    animateParticles();
-
-    // Mouse interaction for particles
-    canvas.addEventListener('mousemove', (e) => {
-      mouse.prevX = mouse.x;
-      mouse.prevY = mouse.y;
-      mouse.x = e.clientX;
-      mouse.y = e.clientY;
-    });
-
-    canvas.addEventListener('mouseleave', () => {
-      mouse.x = null;
-      mouse.y = null;
-      mouse.prevX = null;
-      mouse.prevY = null;
-    });
-
-    window.addEventListener('resize', () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      initParticles();
-    });
-
-    document.querySelector('.theme-toggle').addEventListener('click', () => {
-      setTimeout(() => {
-        initParticles();
-      }, 300); // Sync with theme transition
-    });
-  </script>
+    <script src="script.js"></script>
 </body>
 
 </html>
