@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    
     // --- 1. Spotlight & Custom Cursor (Engineered Inertia) ---
     const cursor = document.querySelector('.cursor-dot');
     const spotlight = document.querySelector('.spotlight');
