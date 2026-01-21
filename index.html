@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Likith Aswathanarayana | Security Engineer</title>
+    <title>Likith Aswathanarayana | Security Learner</title>
     <meta name="description"
-        content="Portfolio of Likith Aswathanarayana, a Cybersecurity & Offensive Security Enthusiast.">
+        content="Portfolio of Likith Aswathanarayana, an undergraduate learning systems security and Linux fundamentals.">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,619 +15,8 @@
         href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap"
         rel="stylesheet">
 
-    <style>
-        :root {
-            --bg-color: #050505;
-            --bg-secondary: #0a0a0a;
-            --text-primary: #ededed;
-            --text-secondary: #888888;
-            --accent-color: #d4d4d4;
-            --border-color: #222;
-
-            --font-mono: 'JetBrains Mono', monospace;
-            --font-sans: 'Inter', sans-serif;
-
-            /* Engineered Easing */
-            --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
-            --ease-out-cubic: cubic-bezier(0.215, 0.61, 0.355, 1);
-            --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
-            --ease-in-out-quad: cubic-bezier(0.455, 0.03, 0.515, 0.955);
-
-            --transition-fast: all 0.3s var(--ease-out-quint);
-            --transition-medium: all 0.6s var(--ease-out-expo);
-            --transition-slow: all 0.9s var(--ease-out-expo);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            cursor: none;
-            /* Custom cursor everywhere */
-        }
-
-        html {
-            scroll-behavior: smooth;
-            font-size: 16px;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-primary);
-            font-family: var(--font-sans);
-            line-height: 1.7;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-            position: relative;
-            /* For spotlight */
-        }
-
-        /* --- Engineered Motion System --- */
-
-        /* Spotlight Overlay */
-        .spotlight {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            pointer-events: none;
-            background: radial-gradient(800px circle at var(--x, 50%) var(--y, 50%),
-                    rgba(255, 255, 255, 0.03),
-                    transparent 40%);
-            z-index: 9999;
-        }
-
-        /* Custom Cursor */
-        .cursor-dot {
-            width: 8px;
-            height: 8px;
-            background-color: var(--accent-color);
-            border-radius: 50%;
-            position: fixed;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-            z-index: 10000;
-            transform: translate(-50%, -50%);
-            mix-blend-mode: difference;
-            will-change: transform;
-        }
-
-        /* Masked Text Reveal - Hierarchy System */
-        .reveal-text-wrapper {
-            overflow: hidden;
-            display: block;
-            /* Ensure the wrapper has dimensions */
-        }
-
-        .reveal-text {
-            transform: translateY(110%);
-            opacity: 0;
-            will-change: transform, opacity;
-            display: block;
-        }
-
-        /* Base Reveal Duration (Body text) */
-        .reveal-text-wrapper.visible .reveal-text {
-            transform: translateY(0);
-            opacity: 1;
-            transition: transform 1s var(--ease-out-expo), opacity 1s ease-out;
-        }
-
-        /* Heading Hierarchy: Faster, stronger */
-        h1.reveal-text-wrapper.visible .reveal-text,
-        h2.reveal-text-wrapper.visible .reveal-text,
-        h3.reveal-text-wrapper.visible .reveal-text,
-        h1 .reveal-text-wrapper.visible .reveal-text,
-        h2 .reveal-text-wrapper.visible .reveal-text,
-        h3 .reveal-text-wrapper.visible .reveal-text {
-            /* Handle both case where wrapper is the H tag or inside it */
-            transition: transform 0.8s var(--ease-out-quint), opacity 0.8s var(--ease-out-quint);
-        }
-
-        /* Stagger List Items */
-        .stagger-wrapper .stagger-item {
-            opacity: 0;
-            transform: translateY(30px);
-            will-change: transform, opacity;
-            /* Transition is set here but delay provided by JS */
-            transition: opacity 0.8s ease-out, transform 0.8s var(--ease-out-expo);
-        }
-
-        .stagger-wrapper.visible .stagger-item {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Typography */
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6 {
-            font-weight: 600;
-            letter-spacing: -0.02em;
-            color: var(--text-primary);
-            font-family: var(--font-sans);
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-            transition: var(--transition-fast);
-            position: relative;
-        }
-
-        ul {
-            list-style: none;
-        }
-
-        /* Utilities */
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 0 40px;
-            width: 100%;
-        }
-
-        .section {
-            padding: 160px 0;
-            /* More expansive vertical rhythm */
-        }
-
-        /* Buttons */
-        .btn {
-            display: inline-block;
-            padding: 16px 32px;
-            font-family: var(--font-mono);
-            border: 1px solid var(--border-color);
-            color: var(--text-primary);
-            border-radius: 2px;
-            font-size: 0.85rem;
-            cursor: none;
-            /* Use custom cursor */
-            background: transparent;
-            transition: all 0.4s var(--ease-out-quint);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn:hover {
-            border-color: var(--text-primary);
-            transform: translateY(-2px);
-            background: rgba(255, 255, 255, 0.02);
-        }
-
-        /* Navbar - Scroll Aware */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 40px 50px;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 100;
-            transition: transform 0.4s var(--ease-out-quint), background 0.4s ease, border 0.4s ease;
-            border-bottom: 1px solid transparent;
-        }
-
-        .navbar.scrolled {
-            background: rgba(5, 5, 5, 0.8);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-            padding: 20px 50px;
-            /* Compress slightly */
-        }
-
-        .navbar.hidden {
-            transform: translateY(-100%);
-        }
-
-        .logo {
-            font-family: var(--font-mono);
-            color: var(--text-primary);
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 40px;
-        }
-
-        /* Link Underline Micro-interaction */
-        .nav-links a {
-            font-family: var(--font-mono);
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-            text-transform: lowercase;
-            position: relative;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 1px;
-            bottom: -4px;
-            left: 0;
-            background-color: var(--text-primary);
-            transition: width 0.3s var(--ease-out-quint);
-        }
-
-        .nav-links a:hover {
-            color: var(--text-primary);
-        }
-
-        .nav-links a:hover::after,
-        .nav-links a.active::after {
-            width: 100%;
-        }
-
-        .nav-links a.active {
-            color: var(--text-primary);
-        }
-
-        /* Hero Section */
-        .hero-section {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: flex-start;
-        }
-
-        .greeting {
-            font-family: var(--font-mono);
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            margin-bottom: 24px;
-            display: block;
-        }
-
-        h1.hero-title {
-            font-size: clamp(3rem, 6vw, 5rem);
-            line-height: 1.05;
-            margin-bottom: 24px;
-            margin-left: -3px;
-        }
-
-        .tagline {
-            font-size: clamp(1.2rem, 2vw, 1.8rem);
-            color: var(--text-secondary);
-            font-weight: 400;
-            margin-bottom: 50px;
-            opacity: 0.9;
-        }
-
-        .bio-short {
-            max-width: 500px;
-            color: var(--text-secondary);
-            margin-bottom: 60px;
-            font-size: 1.1rem;
-            line-height: 1.8;
-        }
-
-        .cta-group {
-            display: flex;
-            gap: 30px;
-            align-items: center;
-        }
-
-        /* Section Headlines */
-        .section-title {
-            font-size: 1.5rem;
-            margin-bottom: 80px;
-            font-weight: 500;
-            color: var(--text-secondary);
-        }
-
-        /* About Grid */
-        .content-grid-2 {
-            display: grid;
-            grid-template-columns: 3fr 2fr;
-            gap: 80px;
-            align-items: center;
-            /* Center image vertically */
-        }
-
-        .text-content p {
-            margin-bottom: 32px;
-            color: var(--text-secondary);
-            font-size: 1.1rem;
-            line-height: 1.8;
-        }
-
-        .text-content strong {
-            color: var(--text-primary);
-            font-weight: 500;
-        }
-
-        /* Profile Image */
-        .about-image-wrapper {
-            position: relative;
-            width: 100%;
-            max-width: 400px;
-            margin: 0 auto;
-            border-radius: 4px;
-            overflow: hidden;
-            /* Optional: Subtle border or glint */
-            border: 1px solid var(--border-color);
-        }
-
-        .about-image {
-            width: 100%;
-            height: auto;
-            display: block;
-            filter: grayscale(100%) contrast(1.1);
-            /* Engineering aesthetic */
-            transition: filter 0.5s ease;
-            opacity: 0.9;
-        }
-
-        .about-image:hover {
-            filter: grayscale(0%) contrast(1);
-            opacity: 1;
-        }
-
-        /* Work / Projects - Hover: Depth not Scale */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 0;
-        }
-
-        .project-card {
-            display: grid;
-            grid-template-columns: 2fr 4fr;
-            gap: 60px;
-            padding: 80px 0;
-            border-bottom: 1px solid var(--border-color);
-            transition: border-color 0.4s ease;
-        }
-
-        .project-card:first-child {
-            border-top: 1px solid var(--border-color);
-        }
-
-        .project-card:hover {
-            border-color: rgba(255, 255, 255, 0.1);
-        }
-
-        .project-card:hover h3 {
-            color: var(--text-primary);
-        }
-
-        .project-info h3 {
-            font-size: 1.8rem;
-            margin-bottom: 16px;
-            color: var(--text-primary);
-            transition: color 0.3s ease;
-        }
-
-        .project-desc {
-            font-size: 1rem;
-            color: var(--text-secondary);
-            margin-bottom: 24px;
-            max-width: 600px;
-            line-height: 1.6;
-        }
-
-        .notes-heading {
-            font-size: 0.85rem;
-            color: var(--text-primary);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 12px;
-            font-family: var(--font-mono);
-            opacity: 0.9;
-        }
-
-        .notes-list {
-            margin-bottom: 30px;
-            list-style: disc;
-            padding-left: 20px;
-        }
-
-        .notes-list li {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            margin-bottom: 8px;
-            font-family: var(--font-mono);
-            opacity: 0.8;
-        }
-
-        .tech-list {
-            margin-top: 0;
-            gap: 24px;
-        }
-
-        .tech-list li {
-            color: var(--text-primary);
-            font-size: 0.85rem;
-            font-family: var(--font-mono);
-            opacity: 0.7;
-        }
-
-        /* Skills */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 40px;
-            border-top: 1px solid var(--border-color);
-            padding-top: 60px;
-        }
-
-        .skill-category h3 {
-            font-family: var(--font-mono);
-            font-size: 0.9rem;
-            color: var(--text-primary);
-            margin-bottom: 32px;
-            font-weight: 400;
-        }
-
-        .skill-category ul li {
-            font-family: var(--font-mono);
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            margin-bottom: 16px;
-            transition: color 0.3s ease, transform 0.3s var(--ease-out-quint);
-        }
-
-        .skill-category ul li:hover {
-            color: var(--text-primary);
-            transform: translateX(5px);
-        }
-
-        /* Philosophy */
-        .mindset-quote {
-            font-size: clamp(2rem, 3vw, 2.5rem);
-            font-weight: 400;
-            line-height: 1.3;
-            color: var(--text-primary);
-            margin-bottom: 60px;
-            letter-spacing: -0.03em;
-        }
-
-        /* Contact */
-        .contact-heading {
-            font-size: clamp(3rem, 5vw, 4.5rem);
-            margin-bottom: 30px;
-            letter-spacing: -0.04em;
-            line-height: 1;
-        }
-
-        .contact-text {
-            font-size: 1.4rem;
-            color: var(--text-secondary);
-            margin-bottom: 60px;
-        }
-
-        /* Status Badge for Learner Portfolio */
-        .status-badge {
-            display: inline-block;
-            font-family: var(--font-mono);
-            font-size: 0.7rem;
-            padding: 4px 8px;
-            border: 1px solid var(--text-secondary);
-            color: var(--text-secondary);
-            border-radius: 2px;
-            margin-bottom: 12px;
-            opacity: 0.8;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        /* Advent of Code Section */
-        .aoc-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            /* Split text and stats */
-            gap: 60px;
-            align-items: center;
-        }
-
-        .aoc-stats {
-            display: grid;
-            grid-template-columns: retry(2, 1fr);
-            gap: 20px;
-        }
-
-        .stat-box {
-            border: 1px solid var(--border-color);
-            padding: 24px;
-            text-align: center;
-            transition: border-color 0.3s ease;
-        }
-
-        .stat-box:hover {
-            border-color: var(--text-secondary);
-        }
-
-        .stat-number {
-            display: block;
-            font-size: 2.5rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 8px;
-            font-family: var(--font-mono);
-        }
-
-        .stat-label {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            font-family: var(--font-mono);
-        }
-
-        /* Typewriter Cursor */
-        .typewriter-cursor {
-            display: inline-block;
-            width: 2px;
-            /* Slim line */
-            height: 1em;
-            /* Matches font size roughly */
-            background-color: var(--accent-color);
-            margin-left: 4px;
-            animation: blink 1s step-end infinite;
-            vertical-align: middle;
-        }
-
-        @keyframes blink {
-
-            0%,
-            100% {
-                opacity: 1;
-            }
-
-            50% {
-                opacity: 0;
-            }
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            * {
-                cursor: auto;
-            }
-
-            /* Restore cursor on touch */
-            .cursor-dot,
-            .spotlight {
-                display: none;
-            }
-
-            .content-grid-2 {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-
-            .aoc-grid {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-
-            .skills-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .project-card {
-                grid-template-columns: 1fr;
-                gap: 30px;
-                padding: 60px 0;
-            }
-
-            .container {
-                padding: 0 24px;
-            }
-
-            .navbar {
-                padding: 20px;
-            }
-        }
-    </style>
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
@@ -652,22 +41,20 @@
                         Aswathanarayana</span></span>
                 <h1 class="hero-title reveal-text-wrapper">
                     <span class="reveal-text">
-                        <span id="typewriter">Security Practitioner (in training).</span><span
-                            class="typewriter-cursor">&nbsp;</span>
+                        <span id="typewriter">Security Learner.</span><span class="typewriter-cursor">&nbsp;</span>
                     </span>
                 </h1>
                 <h2 class="tagline reveal-text-wrapper"><span class="reveal-text"
-                        style="transition-delay: 0.1s;">Building Foundations in <br>Offensive Security & Systems
-                        Engineering.</span></h2>
+                        style="transition-delay: 0.1s;">Learning Linux Security & <br>Systems Fundamentals.</span></h2>
                 <div class="bio-short reveal-text-wrapper">
                     <span class="reveal-text" style="transition-delay: 0.2s;">
-                        Explaining systems by breaking them. Documenting the learning process,
-                        from kernel internals to network protocols.
+                        Building small tools to understand how systems work.
+                        Documenting what I learn about security baselines, network protocols, and authentication.
                     </span>
                 </div>
                 <div class="cta-group reveal-text-wrapper">
                     <div class="reveal-text" style="transition-delay: 0.3s;">
-                        <a href="#work" class="btn primary">View Experiments</a>
+                        <a href="#work" class="btn primary">View Projects</a>
                         <a href="#contact" class="btn secondary">Contact</a>
                     </div>
                 </div>
@@ -682,23 +69,21 @@
                     <div class="text-content reveal-text-wrapper">
                         <div class="reveal-text">
                             <p>
-                                I am an undergraduate student identifying strictly as a <strong>learner</strong>.
-                                My goal is not to present myself as an expert, but as a disciplined student of computer
-                                systems.
+                                I am an undergraduate student learning about <strong>systems security</strong>.
+                                I am not an expert—I am still figuring out how things work, one small project at a time.
                             </p>
                             <p>
-                                I focus on building tools from scratch (like protocols and malware simulators) because I
-                                believe
-                                abstraction is the enemy of deep understanding. All work featured here is built for
-                                educational labs
-                                and research environments.
+                                I build small CLI tools in Python to understand concepts like firewall configurations,
+                                password policies, and network sockets. Each project is a way to learn something new,
+                                not a production-ready solution. I try to document what works, what doesn't, and what I
+                                still don't understand.
                             </p>
                         </div>
                     </div>
                     <!-- Profile Image -->
                     <div class="about-image-wrapper reveal-text-wrapper">
                         <div class="reveal-text" style="transition-delay: 0.2s;">
-                            <img src="profile.png" alt="Likith Aswathanarayana" class="about-image">
+                            <img src="photo.png" alt="Likith Aswathanarayana" class="about-image">
                         </div>
                     </div>
                 </div>
@@ -708,32 +93,28 @@
         <!-- Projects Section -->
         <section id="work" class="section">
             <div class="container">
-                <h2 class="section-title reveal-text-wrapper"><span class="reveal-text">Learning Builds</span></h2>
+                <h2 class="section-title reveal-text-wrapper"><span class="reveal-text">Learning Projects</span></h2>
                 <div class="projects-grid stagger-wrapper">
                     <!-- Project 1 -->
                     <article class="project-card stagger-item">
                         <div class="project-info">
-                            <span class="status-badge">Prototype / Experimental</span>
-                            <h3>SmartBruteRL</h3>
+                            <span class="status-badge">Educational / Read-Only</span>
+                            <h3>Linux Security Baseline Checker</h3>
                             <p class="project-desc">
-                                <strong>Goal:</strong> To understand if Reinforcement Learning could optimize standard
-                                brute-force algorithms.<br>
-                                <strong>Current State:</strong> Functional Python prototype using a custom Q-learning
-                                agent.<br>
-                                <strong>What I Learned:</strong> The massive state space of passwords makes pure RL
-                                inefficient without significant heuristics.
+                                <strong>Goal:</strong> Understand what a basic Linux security audit involves by checking
+                                common configuration points.<br>
+                                <strong>What It Does:</strong> A read-only Python script that checks firewall status
+                                (ufw/iptables), SSH root login configuration, and password policy presence. Outputs a
+                                simple terminal report marking each check as OK, NOT CONFIGURED, or UNKNOWN.<br>
+                                <strong>What I Learned:</strong> Most security hardening comes down to correctly
+                                configuring existing system tools. Reading config files taught me more than running
+                                automated scanners.
                             </p>
-
-                            <h4 class="notes-heading">Next Steps:</h4>
-                            <ul class="notes-list">
-                                <li>Refactor critical loops into C++ for performance.</li>
-                                <li>Investigate transformer models for pattern recognition instead of simple RL.</li>
-                            </ul>
 
                             <ul class="tech-list" style="display:flex; list-style:none;">
                                 <li>Python</li>
-                                <li>TensorFlow</li>
-                                <li>CLI</li>
+                                <li>subprocess</li>
+                                <li>Linux</li>
                             </ul>
                         </div>
                     </article>
@@ -741,27 +122,23 @@
                     <!-- Project 2 -->
                     <article class="project-card stagger-item">
                         <div class="project-info">
-                            <span class="status-badge">Learning Build v0.1</span>
-                            <h3>Snapper</h3>
+                            <span class="status-badge">Educational / Lab Use Only</span>
+                            <h3>Basic Port Scanner</h3>
                             <p class="project-desc">
-                                <strong>Goal:</strong> To manually implement ARP spoofing and packet dissection to
-                                understand layer 2 attacks.<br>
-                                <strong>Current State:</strong> Python script utilizing raw sockets and Scapy
-                                library.<br>
-                                <strong>What I Learned:</strong> Network stability is fragile; improper ARP restoration
-                                immediately crashes the local segment.
+                                <strong>Goal:</strong> Learn how TCP connections work at the socket level by building a
+                                scanner from scratch.<br>
+                                <strong>What It Does:</strong> A Python TCP connect scanner that parses hostnames/URLs,
+                                performs DNS resolution, scans a configurable port range, and maps open ports to common
+                                services like HTTP, SSH, and FTP.<br>
+                                <strong>What I Learned:</strong> The difference between a SYN scan and a full connect
+                                scan matters for detection. Using only the standard library (socket, time) forces you to
+                                understand timeouts and connection states.
                             </p>
 
-                            <h4 class="notes-heading">Next Steps:</h4>
-                            <ul class="notes-list">
-                                <li>Implement proper async queue handling for packet traffic.</li>
-                                <li>Add safeguards to prevent accidental DoS in lab environments.</li>
-                            </ul>
-
                             <ul class="tech-list" style="display:flex; list-style:none;">
-                                <li>Python (Scapy)</li>
-                                <li>Raw Sockets</li>
-                                <li>Network Protocols</li>
+                                <li>Python</li>
+                                <li>socket</li>
+                                <li>DNS</li>
                             </ul>
                         </div>
                     </article>
@@ -769,26 +146,54 @@
                     <!-- Project 3 -->
                     <article class="project-card stagger-item">
                         <div class="project-info">
-                            <span class="status-badge">Prototype</span>
-                            <h3>Jarvis</h3>
+                            <span class="status-badge">Educational</span>
+                            <h3>Password Strength Evaluator</h3>
                             <p class="project-desc">
-                                <strong>Goal:</strong> To build a privacy-focused voice controller without cloud
-                                dependencies.<br>
-                                <strong>Current State:</strong> Local implementation mapping Whisper output to `systemd`
-                                calls.<br>
-                                <strong>What I Learned:</strong> Quantization is essential for CPU inference latency.
+                                <strong>Goal:</strong> Understand what makes a password policy effective by implementing
+                                one myself.<br>
+                                <strong>What It Does:</strong> A CLI tool that evaluates password strength against
+                                configurable rules (length, character types, common patterns). Outputs a 0-100 score
+                                with category labels and specific feedback on what failed.<br>
+                                <strong>What I Learned:</strong> Entropy calculations are straightforward, but real
+                                security depends on preventing dictionary words and common substitutions. Policy
+                                enforcement is harder than scoring.
                             </p>
 
-                            <h4 class="notes-heading">Next Steps:</h4>
+                            <ul class="tech-list" style="display:flex; list-style:none;">
+                                <li>Python</li>
+                                <li>regex</li>
+                                <li>CLI</li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <!-- Project 4 -->
+                    <article class="project-card stagger-item">
+                        <div class="project-info">
+                            <span class="status-badge">Experimental / Incomplete</span>
+                            <h3>SmartBruteRL</h3>
+                            <p class="project-desc">
+                                <strong>Goal:</strong> Explore whether reinforcement learning could optimize brute-force
+                                search order.<br>
+                                <strong>What It Does:</strong> A Python prototype using a basic Q-learning agent to
+                                prioritize password guesses based on learned patterns. Currently runs on small test sets
+                                only.<br>
+                                <strong>What I Learned:</strong> The state space of passwords is too large for simple RL
+                                without heavy heuristics. This approach is not practically useful—the real value was
+                                learning how RL agents work.
+                            </p>
+
+                            <h4 class="notes-heading">Limitations:</h4>
                             <ul class="notes-list">
-                                <li>Improve intent parsing logic (currently regex-heavy).</li>
-                                <li>Explore lighter models for background wake-word detection.</li>
+                                <li>Does not scale beyond toy examples.</li>
+                                <li>Traditional wordlists with rules outperform this in real scenarios.</li>
+                                <li>Included for learning purposes, not as a viable tool.</li>
                             </ul>
 
                             <ul class="tech-list" style="display:flex; list-style:none;">
                                 <li>Python</li>
-                                <li>Whisper (Local)</li>
-                                <li>Bash Utils</li>
+                                <li>Q-Learning</li>
+                                <li>CLI</li>
                             </ul>
                         </div>
                     </article>
@@ -796,32 +201,32 @@
             </div>
         </section>
 
-        <!-- Advent of Code Section (New) -->
+        <!-- Advent of Code Section -->
         <section id="aoc" class="section">
             <div class="container">
-                <h2 class="section-title reveal-text-wrapper"><span class="reveal-text">Discipline Check</span></h2>
+                <h2 class="section-title reveal-text-wrapper"><span class="reveal-text">Consistency Practice</span></h2>
                 <div class="aoc-grid reveal-text-wrapper">
                     <div class="text-content reveal-text">
                         <h3>Advent of Code 2025</h3>
                         <p style="margin-bottom: 24px; color: var(--text-secondary);">
-                            I committed to solving daily algorithmic challenges throughout December to sharpen my
-                            problem-solving skills under constraints.
-                            This exercise was about **consistency over perfection**.
+                            I attempted daily algorithmic challenges throughout December to practice coding under time
+                            constraints.
+                            The goal was consistency, not perfection.
                         </p>
                         <p style="color: var(--text-secondary);">
-                            Key takeaways:
+                            What I practiced:
                         </p>
                         <ul class="notes-list" style="margin-top: 10px;">
-                            <li>Graph traversal algorithms (BFS/DFS) became second nature.</li>
-                            <li>Learned to prioritize reading comprehension over coding speed.</li>
-                            <li>Forced myself to debug logic on paper before print-debugging.</li>
+                            <li>Graph traversal (BFS/DFS) on various problem types.</li>
+                            <li>Reading problem statements carefully before coding.</li>
+                            <li>Debugging logic on paper instead of print statements.</li>
                         </ul>
                     </div>
                     <div class="aoc-stats reveal-text">
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
                             <div class="stat-box">
                                 <span class="stat-number">25</span>
-                                <span class="stat-label">Days Complete</span>
+                                <span class="stat-label">Days Attempted</span>
                             </div>
                             <div class="stat-box">
                                 <span class="stat-number">44</span>
@@ -840,38 +245,38 @@
         <!-- Skills Section -->
         <section id="skills" class="section">
             <div class="container">
-                <h2 class="section-title reveal-text-wrapper"><span class="reveal-text">Current Focus</span></h2>
+                <h2 class="section-title reveal-text-wrapper"><span class="reveal-text">Currently Studying</span></h2>
                 <div class="skills-grid stagger-wrapper">
                     <div class="skill-category stagger-item">
-                        <h3>Systems Learning</h3>
+                        <h3>Systems</h3>
                         <ul>
-                            <li>Linux Kernel (Reading)</li>
-                            <li>C Memory Management</li>
-                            <li>Assembly (Basics)</li>
+                            <li>Linux administration</li>
+                            <li>Firewall configuration</li>
+                            <li>SSH hardening</li>
                         </ul>
                     </div>
                     <div class="skill-category stagger-item">
-                        <h3>Lab Environment</h3>
+                        <h3>Networking</h3>
                         <ul>
-                            <li>Proxmox / Homelab</li>
-                            <li>Network Analysis</li>
-                            <li>Malware Sandbox</li>
+                            <li>TCP/IP basics</li>
+                            <li>DNS resolution</li>
+                            <li>Port scanning concepts</li>
                         </ul>
                     </div>
                     <div class="skill-category stagger-item">
-                        <h3>Tooling</h3>
+                        <h3>Tools</h3>
                         <ul>
-                            <li>Python (Automation)</li>
-                            <li>Ghidra (Beginner)</li>
-                            <li>Docker</li>
+                            <li>Python (scripting)</li>
+                            <li>Bash</li>
+                            <li>Git</li>
                         </ul>
                     </div>
                     <div class="skill-category stagger-item">
-                        <h3>Platforms</h3>
+                        <h3>Learning From</h3>
                         <ul>
-                            <li>TryHackMe (Top 5%)</li>
+                            <li>TryHackMe</li>
                             <li>HackTheBox</li>
-                            <li>Advent of Code</li>
+                            <li>Linux man pages</li>
                         </ul>
                     </div>
                 </div>
@@ -881,19 +286,21 @@
         <!-- Philosophy Section -->
         <section id="philosophy" class="section">
             <div class="container">
-                <h2 class="section-title reveal-text-wrapper"><span class="reveal-text">Philosophy</span></h2>
+                <h2 class="section-title reveal-text-wrapper"><span class="reveal-text">Approach</span></h2>
                 <div class="content-grid-2">
                     <div class="text-content reveal-text-wrapper">
                         <div class="reveal-text">
-                            <p><strong>Fundamentals > Frameworks</strong></p>
+                            <p><strong>Build to Understand</strong></p>
                             <p>
-                                I avoid abstractions until I understand what they abstract. Building wheels is
-                                inefficient for production, but essential for learning.
+                                I write small tools not because they're useful, but because building forces me to
+                                understand.
+                                Reading about port scanning is different from implementing socket connections.
                             </p>
-                            <p><strong>Prototypes > Perfection</strong></p>
+                            <p><strong>Document Honestly</strong></p>
                             <p>
-                                Every project on this site is a snapshot of a learning process. I value the lessons
-                                learned from a broken prototype more than a tutorial-perfect clone.
+                                Every project here has limitations. I try to note what doesn't work and what I still
+                                don't understand.
+                                A broken prototype that teaches something is more valuable than a polished clone.
                             </p>
                         </div>
                     </div>
@@ -905,14 +312,12 @@
         <section id="contact" class="section">
             <div class="container">
                 <h2 class="contact-heading reveal-text-wrapper"><span class="reveal-text">Get in touch.</span></h2>
-                <p class="contact-text reveal-text-wrapper"><span class="reveal-text">Open for opportunities and
-                        collaboration.</span></p>
+                <p class="contact-text reveal-text-wrapper"><span class="reveal-text">Open to learning opportunities and
+                        feedback on projects.</span></p>
                 <div class="reveal-text-wrapper" style="display: flex; gap: 20px; align-items: center;">
                     <span class="reveal-text"><a href="mailto:likith3@proton.me" class="btn primary">Email Me</a></span>
                     <span class="reveal-text"><a href="https://github.com/bytesbylikith" target="_blank"
                             class="btn secondary">GitHub</a></span>
-                    <!-- User provided GitHub link for LinkedIn, likely a typo. Added placeholder or same link? I'll omit LinkedIn for now to be safe or just add GitHub. -->
-                    <!-- Adding just GitHub as requested implies adding socials. -->
                 </div>
             </div>
         </section>
@@ -920,7 +325,7 @@
 
     <footer class="footer"
         style="padding: 40px 0; text-align: center; color: var(--text-secondary); font-size: 0.8rem; opacity: 0.5;">
-        <p>&copy; 2024 Likith Aswathanarayana.</p>
+        <p>&copy; 2026 Likith Aswathanarayana.</p>
     </footer>
 
     <script src="script.js"></script>
