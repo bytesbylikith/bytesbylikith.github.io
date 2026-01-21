@@ -488,6 +488,87 @@ h1.hero-title {
     margin-bottom: 60px;
 }
 
+/* Status Badge for Learner Portfolio */
+.status-badge {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    padding: 4px 8px;
+    border: 1px solid var(--text-secondary);
+    color: var(--text-secondary);
+    border-radius: 2px;
+    margin-bottom: 12px;
+    opacity: 0.8;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Advent of Code Section */
+.aoc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* Split text and stats */
+    gap: 60px;
+    align-items: center;
+}
+
+.aoc-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.stat-box {
+    border: 1px solid var(--border-color);
+    padding: 24px;
+    text-align: center;
+    transition: border-color 0.3s ease;
+}
+
+.stat-box:hover {
+    border-color: var(--text-secondary);
+}
+
+.stat-number {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+    font-family: var(--font-mono);
+}
+
+.stat-label {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+}
+
+/* Typewriter Cursor */
+.typewriter-cursor {
+    display: inline-block;
+    width: 2px;
+    /* Slim line */
+    height: 1em;
+    /* Matches font size roughly */
+    background-color: var(--accent-color);
+    margin-left: 4px;
+    animation: blink 1s step-end infinite;
+    vertical-align: middle;
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     * {
