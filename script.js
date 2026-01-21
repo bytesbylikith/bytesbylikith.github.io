@@ -150,9 +150,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Safety check if element exists
     if (typewriterElement) {
         const phrases = [
-            "Security Practitioner (in training).",
-            "Offensive Security Learner.",
-            "Systems & Security Explorer."
+            "Security Learner.",
+            "Systems Learner.",
+            "Building to Understand."
         ];
 
         let phraseIndex = 0;
