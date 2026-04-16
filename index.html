@@ -1,334 +1,1084 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Likith Aswathanarayana | Security Learner</title>
-    <meta name="description"
-        content="Portfolio of Likith Aswathanarayana, an undergraduate learning systems security and Linux fundamentals.">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Likith Aswathanarayana — Security Learner</title>
+<meta name="description" content="Undergraduate learning systems security, Linux fundamentals, and network protocols.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0a08;
+  --bg2: #111110;
+  --bg3: #181815;
+  --line: rgba(255,255,255,0.07);
+  --line2: rgba(255,255,255,0.12);
+  --text: #f0ede6;
+  --text2: rgba(240,237,230,0.5);
+  --text3: rgba(240,237,230,0.25);
+  --accent: #c8f060;
+  --accent2: #60c8f0;
+  --red: #f06060;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap"
-        rel="stylesheet">
+html { scroll-behavior: smooth; }
 
-    <!-- Styles -->
-    <link rel="stylesheet" href="style.css">
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Mono', monospace;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* ── CUSTOM CURSOR ── */
+#cursor {
+  position: fixed;
+  width: 10px; height: 10px;
+  background: var(--accent);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%,-50%);
+  transition: width 0.2s, height 0.2s, background 0.2s, opacity 0.2s;
+  mix-blend-mode: difference;
+}
+#cursor-ring {
+  position: fixed;
+  width: 36px; height: 36px;
+  border: 1px solid rgba(200,240,96,0.4);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%,-50%);
+  transition: transform 0.12s ease, width 0.3s, height 0.3s, opacity 0.3s;
+}
+body:hover #cursor { opacity: 1; }
+a:hover ~ #cursor, button:hover ~ #cursor { width: 20px; height: 20px; }
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 22px 48px;
+  border-bottom: 1px solid var(--line);
+  background: rgba(10,10,8,0.85);
+  backdrop-filter: blur(20px);
+}
+.nav-logo {
+  font-family: 'Syne', sans-serif;
+  font-size: 13px; font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text);
+  text-decoration: none;
+}
+.nav-links { display: flex; gap: 36px; list-style: none; }
+.nav-links a {
+  font-size: 11px; color: var(--text3);
+  text-decoration: none; letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: color 0.3s;
+  position: relative;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: -4px; left: 0;
+  width: 0; height: 1px;
+  background: var(--accent);
+  transition: width 0.3s;
+}
+.nav-links a:hover { color: var(--accent); }
+.nav-links a:hover::after { width: 100%; }
+.nav-status {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 10px; color: var(--text3); letter-spacing: 0.08em;
+}
+.status-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--accent);
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.7)} }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+}
+.hero-grid-bg {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 80px 80px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
+}
+.hero-main {
+  display: flex;
+  align-items: flex-end;
+  padding: 140px 48px 0;
+  position: relative; z-index: 2;
+}
+.hero-left { flex: 1; }
+.hero-eyebrow {
+  font-size: 11px; color: var(--text3);
+  letter-spacing: 0.18em; text-transform: uppercase;
+  margin-bottom: 40px;
+  display: flex; align-items: center; gap: 16px;
+}
+.hero-eyebrow::before {
+  content: '';
+  display: block; width: 32px; height: 1px;
+  background: var(--text3);
+}
+
+/* PHYSICS TEXT CANVAS */
+#hero-canvas-wrap {
+  position: relative;
+  margin-bottom: 32px;
+}
+#physicsCanvas {
+  display: block;
+  max-width: 100%;
+}
+
+.hero-desc {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(18px, 2vw, 22px);
+  color: var(--text2);
+  line-height: 1.7;
+  max-width: 540px;
+  margin-bottom: 52px;
+  font-style: italic;
+}
+.hero-cta { display: flex; gap: 16px; flex-wrap: wrap; }
+
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 28px;
+  font-family: 'DM Mono', monospace;
+  font-size: 12px; letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: none;
+  transition: all 0.25s;
+}
+.btn-filled {
+  background: var(--accent); color: #0a0a08;
+  border: 1px solid var(--accent);
+  font-weight: 500;
+}
+.btn-filled:hover { background: transparent; color: var(--accent); }
+.btn-outline {
+  background: transparent; color: var(--text2);
+  border: 1px solid var(--line2);
+}
+.btn-outline:hover { border-color: var(--text2); color: var(--text); }
+.btn-arrow { font-size: 14px; transition: transform 0.2s; }
+.btn:hover .btn-arrow { transform: translate(3px, -3px); }
+
+.hero-right {
+  width: 280px;
+  padding: 0 0 0 48px;
+  display: flex; flex-direction: column; gap: 20px;
+  align-self: flex-end;
+  margin-bottom: 0;
+}
+.hero-stat {
+  border-left: 1px solid var(--line2);
+  padding-left: 20px;
+}
+.hero-stat-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 36px; font-weight: 800;
+  color: var(--text);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.hero-stat-num span { color: var(--accent); }
+.hero-stat-label { font-size: 10px; color: var(--text3); letter-spacing: 0.1em; text-transform: uppercase; }
+
+.hero-bottom {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  padding: 24px 48px;
+  border-top: 1px solid var(--line);
+  position: relative; z-index: 2;
+}
+.hero-bottom-left {
+  font-size: 10px; color: var(--text3); letter-spacing: 0.12em;
+}
+.hero-scroll {
+  display: flex; align-items: center; gap: 12px;
+  font-size: 10px; color: var(--text3); letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.scroll-line {
+  width: 48px; height: 1px;
+  background: linear-gradient(90deg, var(--accent), transparent);
+}
+
+/* ── MARQUEE ── */
+.marquee-strip {
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 14px 0;
+  overflow: hidden;
+  white-space: nowrap;
+  background: var(--bg2);
+}
+.marquee-inner {
+  display: inline-flex; gap: 0;
+  animation: marquee 28s linear infinite;
+}
+.marquee-inner span {
+  font-size: 11px; color: var(--text3); letter-spacing: 0.14em; text-transform: uppercase;
+  padding: 0 28px;
+}
+.marquee-inner span.accent { color: var(--accent); }
+@keyframes marquee { from { transform: translateX(0) } to { transform: translateX(-50%) } }
+
+/* ── SECTION BASE ── */
+.section {
+  padding: 120px 48px;
+  border-bottom: 1px solid var(--line);
+  position: relative;
+}
+.section-header {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  margin-bottom: 80px;
+}
+.section-num {
+  font-size: 10px; color: var(--text3); letter-spacing: 0.16em;
+  text-transform: uppercase; padding-top: 6px;
+  font-family: 'DM Mono', monospace;
+}
+.section-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(40px, 6vw, 80px);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+.section-title em {
+  font-style: italic;
+  font-family: 'Instrument Serif', serif;
+  font-weight: 400;
+  color: var(--text2);
+}
+
+/* ── ABOUT ── */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+.about-text p {
+  font-family: 'Instrument Serif', serif;
+  font-size: 20px; line-height: 1.75;
+  color: var(--text2); margin-bottom: 24px;
+}
+.about-text strong { color: var(--text); font-family: 'DM Mono', monospace; font-size: 16px; }
+.about-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 40px; }
+.tag {
+  font-size: 10px; padding: 6px 14px;
+  border: 1px solid var(--line2);
+  color: var(--text3); letter-spacing: 0.1em; text-transform: uppercase;
+  transition: all 0.2s;
+}
+.tag:hover { border-color: var(--accent); color: var(--accent); }
+.about-side { display: flex; flex-direction: column; gap: 1px; }
+.about-card {
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  padding: 28px 32px;
+  transition: border-color 0.3s, background 0.3s;
+  position: relative; overflow: hidden;
+}
+.about-card::before {
+  content: ''; position: absolute; top: 0; left: 0;
+  width: 0; height: 2px;
+  background: var(--accent);
+  transition: width 0.4s;
+}
+.about-card:hover::before { width: 100%; }
+.about-card:hover { background: var(--bg3); border-color: var(--line2); }
+.card-label { font-size: 10px; color: var(--text3); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 10px; }
+.card-value { font-family: 'Syne', sans-serif; font-size: 18px; color: var(--text); font-weight: 600; }
+.card-sub { font-size: 12px; color: var(--text3); margin-top: 4px; line-height: 1.5; }
+
+/* ── PROJECTS ── */
+.projects-list { display: flex; flex-direction: column; gap: 1px; }
+.project-row {
+  display: grid;
+  grid-template-columns: 80px 1fr auto;
+  gap: 40px;
+  align-items: center;
+  padding: 36px 0;
+  border-top: 1px solid var(--line);
+  cursor: none;
+  transition: background 0.3s;
+  position: relative;
+}
+.project-row::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+  height: 1px; background: var(--line);
+}
+.project-row:hover { padding-left: 20px; }
+.project-index { font-size: 11px; color: var(--text3); font-family: 'DM Mono', monospace; }
+.project-body { }
+.project-badge {
+  display: inline-block;
+  font-size: 9px; padding: 4px 10px;
+  border: 1px solid var(--line2);
+  color: var(--text3); letter-spacing: 0.1em; text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.project-badge.edu { border-color: rgba(96,200,240,0.3); color: var(--accent2); }
+.project-badge.exp { border-color: rgba(240,96,96,0.3); color: var(--red); }
+.project-name {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(20px, 2.5vw, 28px);
+  font-weight: 700; color: var(--text);
+  margin-bottom: 10px;
+  transition: color 0.2s;
+}
+.project-row:hover .project-name { color: var(--accent); }
+.project-desc { font-size: 13px; color: var(--text3); line-height: 1.7; max-width: 640px; }
+.project-tech {
+  display: flex; flex-direction: column; align-items: flex-end; gap: 8px;
+}
+.project-tech span {
+  font-size: 10px; color: var(--text3); letter-spacing: 0.08em;
+  padding: 4px 10px; border: 1px solid var(--line);
+  white-space: nowrap;
+}
+
+/* project expanded detail */
+.project-detail {
+  max-height: 0; overflow: hidden;
+  transition: max-height 0.5s ease;
+  padding-left: 120px;
+  background: var(--bg2);
+  border-left: 2px solid var(--accent);
+}
+.project-detail.open { max-height: 300px; }
+.project-detail-inner { padding: 24px 32px 24px 0; }
+.detail-row { display: flex; gap: 60px; }
+.detail-block { flex: 1; }
+.detail-label { font-size: 10px; color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 8px; }
+.detail-text { font-size: 13px; color: var(--text2); line-height: 1.7; }
+
+/* ── AOC ── */
+.aoc-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+}
+.aoc-stars {
+  display: grid;
+  grid-template-columns: repeat(25, 1fr);
+  gap: 4px;
+  margin-bottom: 32px;
+}
+.star {
+  aspect-ratio: 1;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px;
+  background: var(--bg3);
+  border: 1px solid var(--line);
+  transition: all 0.2s;
+  position: relative;
+}
+.star.full { background: rgba(200,240,96,0.15); border-color: var(--accent); }
+.star.full::after {
+  content: '★';
+  font-size: 12px;
+  color: var(--accent);
+}
+.star.half { background: rgba(200,240,96,0.06); border-color: rgba(200,240,96,0.3); }
+.star.half::after { content: '☆'; font-size: 12px; color: rgba(200,240,96,0.5); }
+.aoc-desc p { font-family: 'Instrument Serif', serif; font-size: 18px; color: var(--text2); line-height: 1.7; margin-bottom: 20px; }
+.aoc-stats { display: flex; gap: 48px; margin-top: 40px; }
+.aoc-stat-num { font-family: 'Syne', sans-serif; font-size: 52px; font-weight: 800; color: var(--text); line-height: 1; }
+.aoc-stat-num span { color: var(--accent); }
+.aoc-stat-label { font-size: 10px; color: var(--text3); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 6px; }
+
+/* ── SKILLS ── */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+.skill-cell {
+  background: var(--bg);
+  padding: 40px 32px;
+  transition: background 0.3s;
+}
+.skill-cell:hover { background: var(--bg2); }
+.skill-cell-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 16px; font-weight: 700;
+  color: var(--text); margin-bottom: 28px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--line2);
+}
+.skill-list { list-style: none; }
+.skill-list li {
+  font-size: 13px; color: var(--text2);
+  padding: 8px 0;
+  border-bottom: 1px solid var(--line);
+  display: flex; align-items: center; gap: 10px;
+  transition: color 0.2s;
+}
+.skill-list li::before { content: '→'; color: var(--text3); font-size: 10px; }
+.skill-cell:hover .skill-list li { color: var(--text); }
+.skill-cell:hover .skill-list li::before { color: var(--accent); }
+
+/* ── APPROACH ── */
+.approach-cols {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+.approach-col {
+  background: var(--bg);
+  padding: 52px 48px;
+  transition: background 0.3s;
+}
+.approach-col:hover { background: var(--bg2); }
+.approach-icon {
+  width: 48px; height: 48px;
+  background: var(--bg3);
+  border: 1px solid var(--line2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; margin-bottom: 28px;
+}
+.approach-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 22px; font-weight: 700;
+  color: var(--text); margin-bottom: 16px;
+}
+.approach-text { font-family: 'Instrument Serif', serif; font-size: 17px; color: var(--text2); line-height: 1.75; }
+
+/* ── CONTACT ── */
+.contact-section {
+  padding: 140px 48px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.contact-big {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(60px, 10vw, 140px);
+  font-weight: 800;
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+  color: var(--text);
+}
+.contact-big span { color: var(--accent); }
+.contact-right { }
+.contact-desc {
+  font-family: 'Instrument Serif', serif;
+  font-size: 20px; color: var(--text2);
+  line-height: 1.7; margin-bottom: 40px;
+  font-style: italic;
+}
+.contact-links { display: flex; flex-direction: column; gap: 1px; }
+.contact-link {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 20px 28px;
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  text-decoration: none;
+  color: var(--text2);
+  font-size: 13px; letter-spacing: 0.04em;
+  transition: all 0.25s;
+  cursor: none;
+}
+.contact-link:hover {
+  background: var(--accent); color: var(--bg); border-color: var(--accent);
+}
+.contact-link-arrow { font-size: 16px; }
+
+/* ── FOOTER ── */
+footer {
+  padding: 28px 48px;
+  display: flex; justify-content: space-between; align-items: center;
+  border-top: 1px solid var(--line);
+}
+footer p { font-size: 11px; color: var(--text3); letter-spacing: 0.08em; }
+
+/* ── REVEAL ANIMATIONS ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-d1 { transition-delay: 0.1s; }
+.reveal-d2 { transition-delay: 0.2s; }
+.reveal-d3 { transition-delay: 0.3s; }
+
+/* ── SCANLINE TEXTURE ── */
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 1000;
+  background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.015) 2px, rgba(0,0,0,0.015) 4px);
+  pointer-events: none;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  nav { padding: 18px 24px; }
+  .nav-status { display: none; }
+  .hero-main { padding: 120px 24px 0; flex-direction: column; }
+  .hero-right { width: 100%; padding: 40px 0 0; flex-direction: row; gap: 32px; }
+  .hero-bottom { padding: 20px 24px; }
+  .section { padding: 80px 24px; }
+  .about-grid, .aoc-grid, .contact-section { grid-template-columns: 1fr; gap: 48px; }
+  .skills-grid { grid-template-columns: repeat(2, 1fr); }
+  .approach-cols { grid-template-columns: 1fr; }
+  .project-row { grid-template-columns: 40px 1fr; }
+  .project-tech { display: none; }
+  .marquee-strip { display: none; }
+  .contact-big { font-size: 56px; }
+}
+</style>
 </head>
-
 <body>
-    <div class="spotlight"></div>
-    <div class="cursor-dot"></div>
 
-    <nav class="navbar">
-        <div class="logo">likith.aswathanarayana</div>
-        <ul class="nav-links">
-            <li><a href="#about">About</a></li>
-            <li><a href="#work">Work</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
 
-    <main>
-        <!-- Hero Section -->
-        <section id="hero" class="hero-section">
-            <div class="container">
-                <span class="greeting reveal-text-wrapper"><span class="reveal-text">Likith
-                        Aswathanarayana</span></span>
-                <h1 class="hero-title reveal-text-wrapper">
-                    <span class="reveal-text">
-                        <span id="typewriter">Security Learner.</span><span class="typewriter-cursor">&nbsp;</span>
-                    </span>
-                </h1>
-                <h2 class="tagline reveal-text-wrapper"><span class="reveal-text"
-                        style="transition-delay: 0.1s;">Learning Linux Security & <br>Systems Fundamentals.</span></h2>
-                <div class="bio-short reveal-text-wrapper">
-                    <span class="reveal-text" style="transition-delay: 0.2s;">
-                        Building small tools to understand how systems work.
-                        Documenting what I learn about security baselines, network protocols, and authentication.
-                    </span>
-                </div>
-                <div class="cta-group reveal-text-wrapper">
-                    <div class="reveal-text" style="transition-delay: 0.3s;">
-                        <a href="#work" class="btn primary">View Projects</a>
-                        <a href="#contact" class="btn secondary">Contact</a>
-                    </div>
-                </div>
-            </div>
-        </section>
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#hero">LA</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-status">
+    <div class="status-dot"></div>
+    <span>Open to opportunities</span>
+  </div>
+</nav>
 
-        <!-- About Section -->
-        <section id="about" class="section">
-            <div class="container">
-                <h2 class="section-title reveal-text-wrapper"><span class="reveal-text">About</span></h2>
-                <div class="content-grid-2">
-                    <div class="text-content reveal-text-wrapper">
-                        <div class="reveal-text">
-                            <p>
-                                I am an undergraduate student learning about <strong>systems security</strong>.
-                                I am not an expert—I am still figuring out how things work, one small project at a time.
-                            </p>
-                            <p>
-                                I build small CLI tools in Python to understand concepts like firewall configurations,
-                                password policies, and network sockets. Each project is a way to learn something new,
-                                not a production-ready solution. I try to document what works, what doesn't, and what I
-                                still don't understand.
-                            </p>
-                        </div>
-                    </div>
-                    <!-- Profile Image -->
-                    <div class="about-image-wrapper reveal-text-wrapper">
-                        <div class="reveal-text" style="transition-delay: 0.2s;">
-                            <img src="photo.png" alt="Likith Aswathanarayana" class="about-image">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-main">
+    <div class="hero-left">
+      <div class="hero-eyebrow">Undergraduate · Systems Security</div>
+      <div id="hero-canvas-wrap">
+        <canvas id="physicsCanvas"></canvas>
+      </div>
+      <p class="hero-desc reveal reveal-d1">
+        Building small tools to understand how systems work.<br>
+        Documenting what I learn about security baselines,<br>
+        network protocols, and authentication.
+      </p>
+      <div class="hero-cta reveal reveal-d2">
+        <a href="#work" class="btn btn-filled">View Projects <span class="btn-arrow">↗</span></a>
+        <a href="#contact" class="btn btn-outline">Get in Touch</a>
+      </div>
+    </div>
+    <div class="hero-right reveal reveal-d3">
+      <div class="hero-stat">
+        <div class="hero-stat-num">4<span>+</span></div>
+        <div class="hero-stat-label">Projects built</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">44<span>★</span></div>
+        <div class="hero-stat-label">AoC 2025 stars</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">3<span>+</span></div>
+        <div class="hero-stat-label">Languages used</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-bottom">
+    <div class="hero-bottom-left">Chennai, India · 2026</div>
+    <div class="hero-scroll">
+      <div class="scroll-line"></div>
+      Scroll to explore
+    </div>
+  </div>
+</section>
 
-        <!-- Projects Section -->
-        <section id="work" class="section">
-            <div class="container">
-                <h2 class="section-title reveal-text-wrapper"><span class="reveal-text">Learning Projects</span></h2>
-                <div class="projects-grid stagger-wrapper">
-                    <!-- Project 1 -->
-                    <article class="project-card stagger-item">
-                        <div class="project-info">
-                            <span class="status-badge">Educational / Read-Only</span>
-                            <h3>Linux Security Baseline Checker</h3>
-                            <p class="project-desc">
-                                <strong>Goal:</strong> Understand what a basic Linux security audit involves by checking
-                                common configuration points.<br>
-                                <strong>What It Does:</strong> A read-only Python script that checks firewall status
-                                (ufw/iptables), SSH root login configuration, and password policy presence. Outputs a
-                                simple terminal report marking each check as OK, NOT CONFIGURED, or UNKNOWN.<br>
-                                <strong>What I Learned:</strong> Most security hardening comes down to correctly
-                                configuring existing system tools. Reading config files taught me more than running
-                                automated scanners.
-                            </p>
+<!-- MARQUEE -->
+<div class="marquee-strip" aria-hidden="true">
+  <div class="marquee-inner">
+    <span>Linux Security</span><span class="accent">✦</span>
+    <span>Port Scanning</span><span class="accent">✦</span>
+    <span>Password Policies</span><span class="accent">✦</span>
+    <span>TCP/IP</span><span class="accent">✦</span>
+    <span>SSH Hardening</span><span class="accent">✦</span>
+    <span>Q-Learning</span><span class="accent">✦</span>
+    <span>Python Scripting</span><span class="accent">✦</span>
+    <span>Firewall Config</span><span class="accent">✦</span>
+    <span>Advent of Code</span><span class="accent">✦</span>
+    <span>TryHackMe</span><span class="accent">✦</span>
+    <span>HackTheBox</span><span class="accent">✦</span>
+    <span>Linux Security</span><span class="accent">✦</span>
+    <span>Port Scanning</span><span class="accent">✦</span>
+    <span>Password Policies</span><span class="accent">✦</span>
+    <span>TCP/IP</span><span class="accent">✦</span>
+    <span>SSH Hardening</span><span class="accent">✦</span>
+    <span>Q-Learning</span><span class="accent">✦</span>
+    <span>Python Scripting</span><span class="accent">✦</span>
+    <span>Firewall Config</span><span class="accent">✦</span>
+    <span>Advent of Code</span><span class="accent">✦</span>
+    <span>TryHackMe</span><span class="accent">✦</span>
+    <span>HackTheBox</span><span class="accent">✦</span>
+  </div>
+</div>
 
-                            <ul class="tech-list" style="display:flex; list-style:none;">
-                                <li>Python</li>
-                                <li>subprocess</li>
-                                <li>Linux</li>
-                            </ul>
-                        </div>
-                    </article>
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="section-header reveal">
+    <div class="section-num">00 — About</div>
+    <h2 class="section-title">Who I <em>am.</em></h2>
+  </div>
+  <div class="about-grid">
+    <div class="about-text reveal reveal-d1">
+      <p>I'm an <strong>undergraduate student</strong> learning about systems security. Not an expert — still figuring out how things work, one small project at a time.</p>
+      <p>I build small CLI tools in Python to understand concepts like firewall configurations, password policies, and network sockets. Each project is a way to learn something new, not a production-ready solution.</p>
+      <p>I try to document what works, what doesn't, and what I still don't understand. A broken prototype that teaches something is more valuable than a polished clone.</p>
+      <div class="about-tags">
+        <span class="tag">Python</span><span class="tag">Bash</span>
+        <span class="tag">Linux</span><span class="tag">Git</span>
+        <span class="tag">TCP/IP</span><span class="tag">C++</span>
+        <span class="tag">TryHackMe</span><span class="tag">HackTheBox</span>
+      </div>
+    </div>
+    <div class="about-side reveal reveal-d2">
+      <div class="about-card">
+        <div class="card-label">Currently</div>
+        <div class="card-value">Undergraduate Student</div>
+        <div class="card-sub">Learning systems security & Linux fundamentals</div>
+      </div>
+      <div class="about-card">
+        <div class="card-label">Focus Area</div>
+        <div class="card-value">Security Engineering</div>
+        <div class="card-sub">Firewall configs · SSH hardening · Network protocols</div>
+      </div>
+      <div class="about-card">
+        <div class="card-label">Learning From</div>
+        <div class="card-value">TryHackMe · HackTheBox</div>
+        <div class="card-sub">Linux man pages · Building from scratch</div>
+      </div>
+      <div class="about-card">
+        <div class="card-label">Location</div>
+        <div class="card-value">Chennai, India</div>
+        <div class="card-sub">Open to remote & global opportunities</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-                    <!-- Project 2 -->
-                    <article class="project-card stagger-item">
-                        <div class="project-info">
-                            <span class="status-badge">Educational / Lab Use Only</span>
-                            <h3>Basic Port Scanner</h3>
-                            <p class="project-desc">
-                                <strong>Goal:</strong> Learn how TCP connections work at the socket level by building a
-                                scanner from scratch.<br>
-                                <strong>What It Does:</strong> A Python TCP connect scanner that parses hostnames/URLs,
-                                performs DNS resolution, scans a configurable port range, and maps open ports to common
-                                services like HTTP, SSH, and FTP.<br>
-                                <strong>What I Learned:</strong> The difference between a SYN scan and a full connect
-                                scan matters for detection. Using only the standard library (socket, time) forces you to
-                                understand timeouts and connection states.
-                            </p>
+<!-- PROJECTS -->
+<section class="section" id="work">
+  <div class="section-header reveal">
+    <div class="section-num">01 — Projects</div>
+    <h2 class="section-title">Things I've <em>built.</em></h2>
+  </div>
+  <div class="projects-list">
 
-                            <ul class="tech-list" style="display:flex; list-style:none;">
-                                <li>Python</li>
-                                <li>socket</li>
-                                <li>DNS</li>
-                            </ul>
-                        </div>
-                    </article>
+    <div class="project-row reveal" data-project="0">
+      <div class="project-index">01</div>
+      <div class="project-body">
+        <div class="project-badge edu">Educational · Read-Only</div>
+        <div class="project-name">Linux Security Baseline Checker</div>
+        <p class="project-desc">A read-only Python script that audits firewall status (ufw/iptables), SSH root login configuration, and password policy presence. Outputs a terminal report marking each check as OK, NOT CONFIGURED, or UNKNOWN.</p>
+      </div>
+      <div class="project-tech">
+        <span>Python</span><span>subprocess</span><span>Linux</span>
+      </div>
+    </div>
+    <div class="project-detail" id="detail-0">
+      <div class="project-detail-inner">
+        <div class="detail-row">
+          <div class="detail-block">
+            <div class="detail-label">Goal</div>
+            <div class="detail-text">Understand what a basic Linux security audit involves by checking common configuration points.</div>
+          </div>
+          <div class="detail-block">
+            <div class="detail-label">What I Learned</div>
+            <div class="detail-text">Most security hardening comes down to correctly configuring existing tools. Reading config files taught me more than running automated scanners.</div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-                    <!-- Project 3 -->
-                    <article class="project-card stagger-item">
-                        <div class="project-info">
-                            <span class="status-badge">Educational</span>
-                            <h3>Password Strength Evaluator</h3>
-                            <p class="project-desc">
-                                <strong>Goal:</strong> Understand what makes a password policy effective by implementing
-                                one myself.<br>
-                                <strong>What It Does:</strong> A CLI tool that evaluates password strength against
-                                configurable rules (length, character types, common patterns). Outputs a 0-100 score
-                                with category labels and specific feedback on what failed.<br>
-                                <strong>What I Learned:</strong> Entropy calculations are straightforward, but real
-                                security depends on preventing dictionary words and common substitutions. Policy
-                                enforcement is harder than scoring.
-                            </p>
+    <div class="project-row reveal reveal-d1" data-project="1">
+      <div class="project-index">02</div>
+      <div class="project-body">
+        <div class="project-badge edu">Educational · Lab Only</div>
+        <div class="project-name">Basic Port Scanner</div>
+        <p class="project-desc">A Python TCP connect scanner that parses hostnames/URLs, performs DNS resolution, scans a configurable port range, and maps open ports to common services like HTTP, SSH, and FTP.</p>
+      </div>
+      <div class="project-tech">
+        <span>Python</span><span>socket</span><span>DNS</span>
+      </div>
+    </div>
+    <div class="project-detail" id="detail-1">
+      <div class="project-detail-inner">
+        <div class="detail-row">
+          <div class="detail-block">
+            <div class="detail-label">Goal</div>
+            <div class="detail-text">Learn how TCP connections work at the socket level by building a scanner from scratch using only the standard library.</div>
+          </div>
+          <div class="detail-block">
+            <div class="detail-label">What I Learned</div>
+            <div class="detail-text">The difference between a SYN scan and a full connect scan matters for detection. Timeouts and connection states become real when you implement them.</div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-                            <ul class="tech-list" style="display:flex; list-style:none;">
-                                <li>Python</li>
-                                <li>regex</li>
-                                <li>CLI</li>
-                            </ul>
-                        </div>
-                    </article>
+    <div class="project-row reveal reveal-d2" data-project="2">
+      <div class="project-index">03</div>
+      <div class="project-body">
+        <div class="project-badge edu">Educational</div>
+        <div class="project-name">Password Strength Evaluator</div>
+        <p class="project-desc">A CLI tool that evaluates password strength against configurable rules — length, character types, common patterns. Outputs a 0–100 score with category labels and specific feedback on what failed.</p>
+      </div>
+      <div class="project-tech">
+        <span>Python</span><span>regex</span><span>CLI</span>
+      </div>
+    </div>
+    <div class="project-detail" id="detail-2">
+      <div class="project-detail-inner">
+        <div class="detail-row">
+          <div class="detail-block">
+            <div class="detail-label">Goal</div>
+            <div class="detail-text">Understand what makes a password policy effective by implementing one from scratch.</div>
+          </div>
+          <div class="detail-block">
+            <div class="detail-label">What I Learned</div>
+            <div class="detail-text">Entropy calculations are straightforward, but real security depends on preventing dictionary words and common substitutions. Policy enforcement is harder than scoring.</div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-                    <!-- Project 4 -->
-                    <article class="project-card stagger-item">
-                        <div class="project-info">
-                            <span class="status-badge">Experimental / Incomplete</span>
-                            <h3>SmartBruteRL</h3>
-                            <p class="project-desc">
-                                <strong>Goal:</strong> Explore whether reinforcement learning could optimize brute-force
-                                search order.<br>
-                                <strong>What It Does:</strong> A Python prototype using a basic Q-learning agent to
-                                prioritize password guesses based on learned patterns. Currently runs on small test sets
-                                only.<br>
-                                <strong>What I Learned:</strong> The state space of passwords is too large for simple RL
-                                without heavy heuristics. This approach is not practically useful—the real value was
-                                learning how RL agents work.
-                            </p>
+    <div class="project-row reveal reveal-d3" data-project="3">
+      <div class="project-index">04</div>
+      <div class="project-body">
+        <div class="project-badge exp">Experimental · Incomplete</div>
+        <div class="project-name">SmartBruteRL</div>
+        <p class="project-desc">A Python prototype using a basic Q-learning agent to prioritize password guesses based on learned patterns. Currently runs on small test sets only — included for learning value, not practical use.</p>
+      </div>
+      <div class="project-tech">
+        <span>Python</span><span>Q-Learning</span><span>CLI</span>
+      </div>
+    </div>
+    <div class="project-detail" id="detail-3">
+      <div class="project-detail-inner">
+        <div class="detail-row">
+          <div class="detail-block">
+            <div class="detail-label">Goal</div>
+            <div class="detail-text">Explore whether reinforcement learning could optimize brute-force search order over a password space.</div>
+          </div>
+          <div class="detail-block">
+            <div class="detail-label">What I Learned</div>
+            <div class="detail-text">The state space of passwords is too large for simple RL without heavy heuristics. Traditional wordlists outperform this — the value was learning how RL agents work.</div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-                            <h4 class="notes-heading">Limitations:</h4>
-                            <ul class="notes-list">
-                                <li>Does not scale beyond toy examples.</li>
-                                <li>Traditional wordlists with rules outperform this in real scenarios.</li>
-                                <li>Included for learning purposes, not as a viable tool.</li>
-                            </ul>
+  </div>
+</section>
 
-                            <ul class="tech-list" style="display:flex; list-style:none;">
-                                <li>Python</li>
-                                <li>Q-Learning</li>
-                                <li>CLI</li>
-                            </ul>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </section>
+<!-- ADVENT OF CODE -->
+<section class="section" id="aoc">
+  <div class="section-header reveal">
+    <div class="section-num">02 — Consistency</div>
+    <h2 class="section-title">Advent of <em>Code.</em></h2>
+  </div>
+  <div class="aoc-grid">
+    <div class="reveal reveal-d1">
+      <div class="aoc-stars" id="aocStars"></div>
+      <p style="font-size:11px;color:var(--text3);letter-spacing:0.08em;">25 days · 44 stars · December 2025</p>
+    </div>
+    <div class="aoc-desc reveal reveal-d2">
+      <p>I attempted daily algorithmic challenges throughout December to practice coding under time constraints. The goal was consistency, not perfection.</p>
+      <p>Graph traversal, reading problem statements carefully, and debugging logic on paper instead of print statements.</p>
+      <div class="aoc-stats">
+        <div>
+          <div class="aoc-stat-num">25<span>d</span></div>
+          <div class="aoc-stat-label">Days attempted</div>
+        </div>
+        <div>
+          <div class="aoc-stat-num">44<span>★</span></div>
+          <div class="aoc-stat-label">Total stars</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-        <!-- Advent of Code Section -->
-        <section id="aoc" class="section">
-            <div class="container">
-                <h2 class="section-title reveal-text-wrapper"><span class="reveal-text">Consistency Practice</span></h2>
-                <div class="aoc-grid reveal-text-wrapper">
-                    <div class="text-content reveal-text">
-                        <h3>Advent of Code 2025</h3>
-                        <p style="margin-bottom: 24px; color: var(--text-secondary);">
-                            I attempted daily algorithmic challenges throughout December to practice coding under time
-                            constraints.
-                            The goal was consistency, not perfection.
-                        </p>
-                        <p style="color: var(--text-secondary);">
-                            What I practiced:
-                        </p>
-                        <ul class="notes-list" style="margin-top: 10px;">
-                            <li>Graph traversal (BFS/DFS) on various problem types.</li>
-                            <li>Reading problem statements carefully before coding.</li>
-                            <li>Debugging logic on paper instead of print statements.</li>
-                        </ul>
-                    </div>
-                    <div class="aoc-stats reveal-text">
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                            <div class="stat-box">
-                                <span class="stat-number">25</span>
-                                <span class="stat-label">Days Attempted</span>
-                            </div>
-                            <div class="stat-box">
-                                <span class="stat-number">44</span>
-                                <span class="stat-label">Total Stars</span>
-                            </div>
-                            <div class="stat-box" style="grid-column: span 2;">
-                                <span class="stat-number" style="font-size: 1.5rem;">Python / C++</span>
-                                <span class="stat-label">Languages Used</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+<!-- SKILLS -->
+<section class="section" id="skills">
+  <div class="section-header reveal">
+    <div class="section-num">03 — Skills</div>
+    <h2 class="section-title">Currently <em>studying.</em></h2>
+  </div>
+  <div class="skills-grid reveal reveal-d1">
+    <div class="skill-cell">
+      <div class="skill-cell-title">Systems</div>
+      <ul class="skill-list">
+        <li>Linux administration</li>
+        <li>Firewall configuration</li>
+        <li>SSH hardening</li>
+        <li>Process management</li>
+      </ul>
+    </div>
+    <div class="skill-cell">
+      <div class="skill-cell-title">Networking</div>
+      <ul class="skill-list">
+        <li>TCP/IP basics</li>
+        <li>DNS resolution</li>
+        <li>Port scanning concepts</li>
+        <li>Socket programming</li>
+      </ul>
+    </div>
+    <div class="skill-cell">
+      <div class="skill-cell-title">Tools</div>
+      <ul class="skill-list">
+        <li>Python (scripting)</li>
+        <li>C++</li>
+        <li>Bash</li>
+        <li>Git</li>
+      </ul>
+    </div>
+    <div class="skill-cell">
+      <div class="skill-cell-title">Learning From</div>
+      <ul class="skill-list">
+        <li>TryHackMe</li>
+        <li>HackTheBox</li>
+        <li>Linux man pages</li>
+        <li>Building from scratch</li>
+      </ul>
+    </div>
+  </div>
+</section>
 
-        <!-- Skills Section -->
-        <section id="skills" class="section">
-            <div class="container">
-                <h2 class="section-title reveal-text-wrapper"><span class="reveal-text">Currently Studying</span></h2>
-                <div class="skills-grid stagger-wrapper">
-                    <div class="skill-category stagger-item">
-                        <h3>Systems</h3>
-                        <ul>
-                            <li>Linux administration</li>
-                            <li>Firewall configuration</li>
-                            <li>SSH hardening</li>
-                        </ul>
-                    </div>
-                    <div class="skill-category stagger-item">
-                        <h3>Networking</h3>
-                        <ul>
-                            <li>TCP/IP basics</li>
-                            <li>DNS resolution</li>
-                            <li>Port scanning concepts</li>
-                        </ul>
-                    </div>
-                    <div class="skill-category stagger-item">
-                        <h3>Tools</h3>
-                        <ul>
-                            <li>Python (scripting)</li>
-                            <li>Bash</li>
-                            <li>Git</li>
-                        </ul>
-                    </div>
-                    <div class="skill-category stagger-item">
-                        <h3>Learning From</h3>
-                        <ul>
-                            <li>TryHackMe</li>
-                            <li>HackTheBox</li>
-                            <li>Linux man pages</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
+<!-- APPROACH -->
+<section class="section">
+  <div class="section-header reveal">
+    <div class="section-num">04 — Philosophy</div>
+    <h2 class="section-title">How I <em>think.</em></h2>
+  </div>
+  <div class="approach-cols reveal reveal-d1">
+    <div class="approach-col">
+      <div class="approach-icon">⚙</div>
+      <div class="approach-title">Build to Understand</div>
+      <p class="approach-text">I write small tools not because they're useful, but because building forces me to understand. Reading about port scanning is different from implementing socket connections.</p>
+    </div>
+    <div class="approach-col">
+      <div class="approach-icon">◎</div>
+      <div class="approach-title">Document Honestly</div>
+      <p class="approach-text">Every project here has limitations. I note what doesn't work and what I still don't understand. A broken prototype that teaches something is more valuable than a polished clone.</p>
+    </div>
+  </div>
+</section>
 
-        <!-- Philosophy Section -->
-        <section id="philosophy" class="section">
-            <div class="container">
-                <h2 class="section-title reveal-text-wrapper"><span class="reveal-text">Approach</span></h2>
-                <div class="content-grid-2">
-                    <div class="text-content reveal-text-wrapper">
-                        <div class="reveal-text">
-                            <p><strong>Build to Understand</strong></p>
-                            <p>
-                                I write small tools not because they're useful, but because building forces me to
-                                understand.
-                                Reading about port scanning is different from implementing socket connections.
-                            </p>
-                            <p><strong>Document Honestly</strong></p>
-                            <p>
-                                Every project here has limitations. I try to note what doesn't work and what I still
-                                don't understand.
-                                A broken prototype that teaches something is more valuable than a polished clone.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+<!-- CONTACT -->
+<div class="contact-section section" id="contact">
+  <div class="reveal">
+    <div class="contact-big">Let's<br><span>talk.</span></div>
+  </div>
+  <div class="reveal reveal-d2">
+    <p class="contact-desc">Open to learning opportunities, internships, feedback on projects, or just a conversation about security and systems.</p>
+    <div class="contact-links">
+      <a href="mailto:likith3@proton.me" class="contact-link">
+        <span>likith3@proton.me</span>
+        <span class="contact-link-arrow">↗</span>
+      </a>
+      <a href="https://github.com/bytesbylikith" target="_blank" class="contact-link">
+        <span>github.com/bytesbylikith</span>
+        <span class="contact-link-arrow">↗</span>
+      </a>
+    </div>
+  </div>
+</div>
 
-        <!-- Contact Section -->
-        <section id="contact" class="section">
-            <div class="container">
-                <h2 class="contact-heading reveal-text-wrapper"><span class="reveal-text">Get in touch.</span></h2>
-                <p class="contact-text reveal-text-wrapper"><span class="reveal-text">Open to learning opportunities and
-                        feedback on projects.</span></p>
-                <div class="reveal-text-wrapper" style="display: flex; gap: 20px; align-items: center;">
-                    <span class="reveal-text"><a href="mailto:likith3@proton.me" class="btn primary">Email Me</a></span>
-                    <span class="reveal-text"><a href="https://github.com/bytesbylikith" target="_blank"
-                            class="btn secondary">GitHub</a></span>
-                </div>
-            </div>
-        </section>
-    </main>
+<footer>
+  <p>© 2026 Likith Aswathanarayana</p>
+  <p>Built from scratch · Chennai, India</p>
+</footer>
 
-    <footer class="footer"
-        style="padding: 40px 0; text-align: center; color: var(--text-secondary); font-size: 0.8rem; opacity: 0.5;">
-        <p>&copy; 2026 Likith Aswathanarayana.</p>
-    </footer>
+<script>
+// ── CURSOR ──
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursor-ring');
+let rx = 0, ry = 0, cx = 0, cy = 0;
 
-    <script src="script.js"></script>
+document.addEventListener('mousemove', e => {
+  cx = e.clientX; cy = e.clientY;
+  cursor.style.left = cx + 'px';
+  cursor.style.top = cy + 'px';
+});
+
+function animRing() {
+  rx += (cx - rx) * 0.12;
+  ry += (cy - ry) * 0.12;
+  ring.style.left = rx + 'px';
+  ring.style.top = ry + 'px';
+  requestAnimationFrame(animRing);
+}
+animRing();
+
+document.querySelectorAll('a, button, .project-row').forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    ring.style.width = '56px'; ring.style.height = '56px';
+    ring.style.borderColor = 'rgba(200,240,96,0.7)';
+  });
+  el.addEventListener('mouseleave', () => {
+    ring.style.width = '36px'; ring.style.height = '36px';
+    ring.style.borderColor = 'rgba(200,240,96,0.4)';
+  });
+});
+
+// ── PHYSICS TEXT ──
+const canvas = document.getElementById('physicsCanvas');
+const ctx = canvas.getContext('2d');
+const wrap = document.getElementById('hero-canvas-wrap');
+
+const LINES = [
+  { text: 'Security', size: null, color: 'rgba(240,237,230,0.95)', font: '800' },
+  { text: 'Learner.', size: null, color: 'rgba(200,240,96,0.9)', font: '800' },
+];
+
+let particles = [];
+let W = 0, H = 0;
+let mx = -9999, my = -9999;
+
+function setupCanvas() {
+  W = wrap.offsetWidth || window.innerWidth - 96;
+  const fs0 = Math.min(Math.floor(W / 5.5), 130);
+  LINES[0].size = fs0; LINES[1].size = fs0;
+  H = fs0 * 2.4 + 20;
+  canvas.width = W; canvas.height = H;
+  buildParticles();
+}
+
+function buildParticles() {
+  particles = [];
+  ctx.textBaseline = 'top';
+  let y = 10;
+  for (const line of LINES) {
+    ctx.font = `${line.font} ${line.size}px Syne, sans-serif`;
+    let x = 0;
+    for (const ch of line.text) {
+      if (ch === ' ') { x += line.size * 0.3; continue; }
+      const p = {
+        ox: x, oy: y,
+        x: Math.random() * W,
+        y: Math.random() * H,
+        vx: (Math.random()-0.5)*6,
+        vy: (Math.random()-0.5)*6,
+        char: ch, size: line.size, color: line.color, font: line.font,
+        w: ctx.measureText(ch).width
+      };
+      particles.push(p);
+      x += p.w;
+    }
+    y += line.size * 1.12;
+  }
+}
+
+canvas.addEventListener('mousemove', e => {
+  const r = canvas.getBoundingClientRect();
+  mx = e.clientX - r.left; my = e.clientY - r.top;
+});
+canvas.addEventListener('mouseleave', () => { mx = -9999; my = -9999; });
+window.addEventListener('mousemove', e => {
+  const r = canvas.getBoundingClientRect();
+  mx = e.clientX - r.left; my = e.clientY - r.top;
+});
+
+function tick() {
+  ctx.clearRect(0, 0, W, H);
+  for (const p of particles) {
+    const dx = p.x - p.ox, dy = p.y - p.oy;
+    p.vx += -dx * 0.1;
+    p.vy += -dy * 0.1;
+    const mdx = p.x - mx, mdy = p.y - my;
+    const d2 = mdx*mdx + mdy*mdy;
+    const R = 110;
+    if (d2 < R*R && d2 > 0.1) {
+      const d = Math.sqrt(d2);
+      const f = (R - d) / R * 14;
+      p.vx += (mdx/d) * f;
+      p.vy += (mdy/d) * f;
+    }
+    p.vx *= 0.8; p.vy *= 0.8;
+    p.x += p.vx; p.y += p.vy;
+    ctx.save();
+    ctx.font = `${p.font} ${p.size}px Syne, sans-serif`;
+    ctx.fillStyle = p.color;
+    ctx.textBaseline = 'top';
+    ctx.fillText(p.char, p.x, p.y);
+    ctx.restore();
+  }
+  requestAnimationFrame(tick);
+}
+
+setTimeout(() => { setupCanvas(); tick(); }, 300);
+window.addEventListener('resize', setupCanvas);
+
+// ── PROJECT ROWS TOGGLE ──
+document.querySelectorAll('.project-row').forEach(row => {
+  row.addEventListener('click', () => {
+    const idx = row.dataset.project;
+    const detail = document.getElementById('detail-' + idx);
+    const isOpen = detail.classList.contains('open');
+    document.querySelectorAll('.project-detail').forEach(d => d.classList.remove('open'));
+    if (!isOpen) detail.classList.add('open');
+  });
+});
+
+// ── AOC STARS ──
+const starsContainer = document.getElementById('aocStars');
+for (let i = 1; i <= 25; i++) {
+  const s = document.createElement('div');
+  s.className = 'star ' + (i <= 19 ? 'full' : i <= 22 ? 'half' : '');
+  starsContainer.appendChild(s);
+}
+
+// ── SCROLL REVEAL ──
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// ── SMOOTH NAV ──
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+  });
+});
+</script>
 </body>
-
 </html>
